@@ -1,8 +1,14 @@
 import pygame
 import os
 
-# Coordenadas dos obstáculos
-coordenadas_obstaculos = [(100, 200), (400, 300), (700, 400)]
+# Coordenadas e tamanhos dos obstáculos
+obstaculos_info = [
+    {"coordenadas": (100, 200), "tamanho": (100, 100), "imagem": 'tree.png'},
+    {"coordenadas": (900, 300), "tamanho": (150, 150), "imagem": 'predio1.png'},
+    {"coordenadas": (400, 500), "tamanho": (100, 100), "imagem": 'tree.png'},
+    {"coordenadas": (700, 1400), "tamanho": (150, 150), "imagem": 'predio1.png'},
+    {"coordenadas": (50, 650), "tamanho": (150, 150), "imagem": 'predio2.png'}
+]
 
 # Função para carregar e redimensionar uma imagem
 def carregar_e_redimensionar_imagem(nome_arquivo, novo_tamanho):
@@ -18,10 +24,10 @@ def carregar_e_redimensionar_imagem(nome_arquivo, novo_tamanho):
     return imagem
 
 class Obstaculo(pygame.sprite.Sprite):
-    def __init__(self, x, y, imagem):
+    def __init__(self, x, y, tamanho, imagem):
         super().__init__()
 
-        self.image = imagem
+        self.image = carregar_e_redimensionar_imagem(imagem, tamanho)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -29,13 +35,14 @@ class Obstaculo(pygame.sprite.Sprite):
 def cria_obstaculos():
     lista_de_obstaculos = pygame.sprite.Group()
 
-    for x, y in coordenadas_obstaculos:
-        # Carregar e redimensionar a imagem dentro do loop
-        imagem = carregar_e_redimensionar_imagem('tree.jpg', (50, 50))  # Ajuste o tamanho conforme necessário
-        obstaculo = Obstaculo(x, y, imagem)
+    for obstaculo_info in obstaculos_info:
+        x, y = obstaculo_info["coordenadas"]
+        tamanho = obstaculo_info["tamanho"]
+        imagem = obstaculo_info["imagem"]
+        obstaculo = Obstaculo(x, y, tamanho, imagem)
         lista_de_obstaculos.add(obstaculo)
 
     return lista_de_obstaculos
 
-# Crie a lista de obstáculos fora do loop principal
+# Lista de obstáculos exportada para ser usada em main.py
 lista_de_obstaculos = cria_obstaculos()

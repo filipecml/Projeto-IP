@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from obstaculos import lista_de_obstaculos 
+from obstaculos import lista_de_obstaculos
 
 pygame.init()
 
@@ -12,7 +12,8 @@ tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('CroCIn Road')
 
 while True:
-    tela.fill((0, 0, 0))
+    # Desenhe o fundo da tela como grama (um retângulo verde-claro)
+    tela.fill((34, 139, 34))  # Cor RGB para verde-claro
 
     for event in pygame.event.get():
         if event.type == QUIT:

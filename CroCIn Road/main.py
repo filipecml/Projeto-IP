@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from sys import exit
 from obstaculos import lista_de_obstaculos
+from coletaveis import lista_de_coletaveis
 from personagem import Personagem
 
 pygame.init()
@@ -12,7 +13,7 @@ altura = 720
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('CroCIn Road')
 
-personagem = Personagem(50, altura - 100, 50, tela)  # Passe a tela como parâmetro
+personagem = Personagem(50, altura - 100, 50, tela)
 
 def movimentacao(personagem):
     keys = pygame.key.get_pressed()
@@ -26,7 +27,6 @@ def movimentacao(personagem):
         personagem.movimento(0, personagem.velocidade)
 
 while True:
-    # Desenhe o fundo da tela como grama (um retângulo verde-claro)
     tela.fill((34, 139, 34))  # Cor RGB para verde-claro
 
     for event in pygame.event.get():
@@ -34,9 +34,10 @@ while True:
             pygame.quit()
             exit()
 
-    # Atualize e desenhe os obstáculos dentro do loop principal
     lista_de_obstaculos.update()
     lista_de_obstaculos.draw(tela)
+    lista_de_coletaveis.update()
+    lista_de_coletaveis.draw(tela)
 
     # Chame a função de movimentação do personagem
     movimentacao(personagem)

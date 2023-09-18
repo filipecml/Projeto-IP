@@ -6,8 +6,8 @@ obstaculos_info = [
     {"coordenadas": (100, 200), "tamanho": (100, 100), "imagem": "tree.png"},
     {"coordenadas": (900, 300), "tamanho": (150, 150), "imagem": "predio1.png"},
     {"coordenadas": (400, 500), "tamanho": (100, 100), "imagem": "tree.png"},
-    {"coordenadas": (700, 1400), "tamanho": (150, 150), "imagem": "predio1.png"},
-    {"coordenadas": (50, 650), "tamanho": (150, 150), "imagem": "predio2.png"},
+    {"coordenadas": (700, 500), "tamanho": (150, 150), "imagem": "predio1.png"},
+    {"coordenadas": (50, 500), "tamanho": (150, 150), "imagem": "predio2.png"},
 ]
 
 

@@ -10,7 +10,7 @@ obstaculos_info = [
     {"coordenadas": (50, 650), "tamanho": (150, 150), "imagem": 'predio2.png'}
 ]
 
-# Função para carregar e redimensionar uma imagem
+# Função para carregar e redimensionar uma imagem 
 def carregar_e_redimensionar_imagem(nome_arquivo, novo_tamanho):
     # Obtém o diretório atual do arquivo obstaculos.py
     current_dir = os.path.dirname(__file__)

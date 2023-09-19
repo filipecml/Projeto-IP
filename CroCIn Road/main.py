@@ -50,3 +50,6 @@ while True:
     personagem.criar_personagem()
 
     pygame.display.update()
+
+
+#TESTE DE CONFLITO 

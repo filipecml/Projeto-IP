@@ -3,11 +3,11 @@ import os
 
 # Coordenadas e tamanhos dos obstáculos
 obstaculos_info = [
-    {"coordenadas": (100, 200), "tamanho": (100, 100), "imagem": "tree.png"},
-    {"coordenadas": (900, 300), "tamanho": (150, 150), "imagem": "predio1.png"},
-    {"coordenadas": (400, 500), "tamanho": (100, 100), "imagem": "tree.png"},
-    {"coordenadas": (700, 1400), "tamanho": (150, 150), "imagem": "predio1.png"},
-    {"coordenadas": (50, 650), "tamanho": (150, 150), "imagem": "predio2.png"},
+    {"coordenadas": (200, 200), "tamanho": (100, 100), "imagem": "tree.png"},
+    {"coordenadas": (300, 300), "tamanho": (150, 150), "imagem": "predio1.png"},
+    {"coordenadas": (400, 400), "tamanho": (100, 100), "imagem": "tree.png"},
+    {"coordenadas": (500, 500), "tamanho": (150, 150), "imagem": "predio1.png"},
+    {"coordenadas": (600, 600), "tamanho": (150, 150), "imagem": "predio2.png"},
 ]
 
 

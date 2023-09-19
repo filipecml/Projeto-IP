@@ -12,18 +12,8 @@ altura = 720
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('CroCIn Road')
 
-personagem = Personagem(50, altura - 100, 50, tela)  # Passe a tela como parâmetro
-
-def movimentacao(personagem):
-    keys = pygame.key.get_pressed()
-    if keys[K_LEFT] or keys[K_a]:
-        personagem.movimento(-personagem.velocidade, 0)
-    if keys[K_RIGHT] or keys[K_d]:
-        personagem.movimento(personagem.velocidade, 0)
-    if keys[K_UP] or keys[K_w]:
-        personagem.movimento(0, -personagem.velocidade)
-    if keys[K_DOWN] or keys[K_s]:
-        personagem.movimento(0, personagem.velocidade)
+tamanho = 40
+personagem = Personagem(largura/2 - tamanho/2, altura-75, tamanho, tela)  # Passe a tela como parâmetro
 
 while True:
     # Desenhe o fundo da tela como grama (um retângulo verde-claro)
@@ -34,12 +24,8 @@ while True:
             pygame.quit()
             exit()
 
-    # Atualize e desenhe os obstáculos dentro do loop principal
-    lista_de_obstaculos.update()
-    lista_de_obstaculos.draw(tela)
-
-    # Chame a função de movimentação do personagem
-    movimentacao(personagem)
+    # Chame a função de processar eventos do personagem
+    personagem.processar_eventos()
 
     # Desenhe o personagem
     personagem.criar_personagem()

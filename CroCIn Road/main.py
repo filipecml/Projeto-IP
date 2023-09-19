@@ -26,6 +26,11 @@ while True:
             pygame.quit()
             exit()
 
+    lista_de_obstaculos.update()
+    lista_de_obstaculos.draw(tela)
+    lista_de_coletaveis.update()
+    lista_de_coletaveis.draw(tela)
+
     # Chame a função de processar eventos do personagem
     personagem.processar_eventos()
 

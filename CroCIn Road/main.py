@@ -8,7 +8,7 @@ from cenario import Cenario
 
 pygame.init()
 
-largura = 1280
+largura = 600
 altura = 720
 
 tela = pygame.display.set_mode((largura, altura))
@@ -22,8 +22,8 @@ personagem = Personagem(
 # Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
 cor_fundo = (34, 139, 34)
 
-# Defina as coordenadas da pista diagonal esquerda
-# Por exemplo, um retângulo da parte inferior direita para a parte superior esquerda
+
+
 cenario = Cenario(largura, altura)
 
 while True:

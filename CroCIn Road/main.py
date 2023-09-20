@@ -1,30 +1,33 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from obstaculos import lista_de_obstaculos
-from coletaveis import lista_de_coletaveis
+from car import RightCar, LeftCar  # Importe as classes do arquivo car.py
 from personagem import Personagem
 from cenario import Cenario
 
 pygame.init()
 
 largura = 600
-altura = 720
+altura = 800
 
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("CroCIn Road")
 
-tamanho = 40
+tamanho = 40    
+
+#Criando o personagem 
 personagem = Personagem(
     largura / 2 - tamanho / 2, altura - 75, tamanho, tela
-)  # Passe a tela como parâmetro
+) 
+
+#Criando os carros, posição e velocidade
+car1 = RightCar(300, 500, 1, largura)
 
 # Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
 cor_fundo = (34, 139, 34)
 
-
-
 cenario = Cenario(largura, altura)
+
 
 while True:
     # Desenho do cenario
@@ -35,19 +38,15 @@ while True:
             pygame.quit()
             exit()
 
-    
-    # Atualize e desenhe os obstáculos dentro do loop principal
-    lista_de_obstaculos.update()
-    #lista_de_obstaculos.draw(tela)
-    lista_de_coletaveis.update()
-    #lista_de_coletaveis.draw(tela)
+    # Desenhar os carros 
+    car1.draw(tela)
+    car1.drive()
+    car1.check_boundary()
 
-    # Chame a função de processar eventos do personagem
+    # Chama a função de processar eventos do personagem
     personagem.processar_eventos()
 
     # Desenhe o personagem
     personagem.criar_personagem()
 
     pygame.display.update()
-
-

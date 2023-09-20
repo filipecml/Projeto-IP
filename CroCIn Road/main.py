@@ -4,6 +4,7 @@ from sys import exit
 from obstaculos import lista_de_obstaculos
 from coletaveis import lista_de_coletaveis
 from personagem import Personagem
+from cenario import Cenario
 
 pygame.init()
 
@@ -23,25 +24,23 @@ cor_fundo = (34, 139, 34)
 
 # Defina as coordenadas da pista diagonal esquerda
 # Por exemplo, um retângulo da parte inferior direita para a parte superior esquerda
-pista_coords = [(largura, altura), (100, 100)]
+cenario = Cenario(largura, altura)
 
 while True:
-    # Desenhe o fundo da tela como grama
-    tela.fill(cor_fundo)
+    # Desenho do cenario
+    cenario.desenhar(tela)
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             exit()
 
-    # Desenhe a pista diagonal esquerda
-    pygame.draw.polygon(tela, (0, 0, 0), pista_coords, 40)
     
     # Atualize e desenhe os obstáculos dentro do loop principal
     lista_de_obstaculos.update()
-    lista_de_obstaculos.draw(tela)
+    #lista_de_obstaculos.draw(tela)
     lista_de_coletaveis.update()
-    lista_de_coletaveis.draw(tela)
+    #lista_de_coletaveis.draw(tela)
 
     # Chame a função de processar eventos do personagem
     personagem.processar_eventos()
@@ -52,4 +51,3 @@ while True:
     pygame.display.update()
 
 
-#TESTE DE CONFLITO 

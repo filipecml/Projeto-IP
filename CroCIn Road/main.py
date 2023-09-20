@@ -28,8 +28,8 @@ cor_fundo = (34, 139, 34)
 
 cenario = Cenario(largura, altura)
 
-
 while True:
+    
     # Desenho do cenario
     cenario.desenhar(tela)
 

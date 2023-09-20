@@ -12,7 +12,7 @@ class Cenario:
         self.grama_3 = pygame.image.load(os.path.join(self.current_dir, "imagens", "grama_3.png"))
         self.rua = pygame.image.load(os.path.join(self.current_dir, "imagens", "rua_full.png"))
         self.rio = pygame.image.load(os.path.join(self.current_dir, "imagens", "rio_full.png"))
-        self.linha_chegada = pygame.image.load(os.path.join(self.current_dir, "imagens","chegada.png"))
+        self.linha_chegada = pygame.image.load(os.path.join(self.current_dir, "imagens", "chegada.png"))
 
     def desenhar(self, tela):
         # Linha de chegada

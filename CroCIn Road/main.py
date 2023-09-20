@@ -22,8 +22,6 @@ personagem = Personagem(
 # Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
 cor_fundo = (34, 139, 34)
 
-
-
 cenario = Cenario(largura, altura)
 
 while True:

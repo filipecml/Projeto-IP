@@ -1,15 +1,18 @@
 import pygame
+import os
 
 class Cenario:
     def __init__(self, largura, altura):
+        self.current_dir = os.path.dirname(__file__)
+        
         self.largura = largura
         self.altura = altura
-        self.grama_1 = pygame.image.load("C:\\Users\\kabes\\OneDrive\\Ambiente de Trabalho\\Faculdade.1\\CroCin Road\\Projeto-IP\\CroCIn Road\\imagens\\grama_1.png")
-        self.grama_2 = pygame.image.load("C:\\Users\\kabes\\OneDrive\\Ambiente de Trabalho\\Faculdade.1\\CroCin Road\\Projeto-IP\\CroCIn Road\\imagens\\grama_2.png")
-        self.grama_3 = pygame.image.load("C:\\Users\\kabes\\OneDrive\\Ambiente de Trabalho\\Faculdade.1\\CroCin Road\\Projeto-IP\\CroCIn Road\\imagens\\grama_3.png")
-        self.rua = pygame.image.load("C:\\Users\\kabes\\OneDrive\\Ambiente de Trabalho\\Faculdade.1\\CroCin Road\\Projeto-IP\\CroCIn Road\\imagens\\rua_full.png")
-        self.rio = pygame.image.load("C:\\Users\\kabes\\OneDrive\\Ambiente de Trabalho\\Faculdade.1\\CroCin Road\\Projeto-IP\\CroCIn Road\\imagens\\rio_full.png")
-        self.linha_chegada = pygame.image.load("C:\\Users\\kabes\\OneDrive\\Ambiente de Trabalho\\Faculdade.1\\CroCin Road\\Projeto-IP\\CroCIn Road\\imagens\\chegada.png")
+        self.grama_1 = pygame.image.load(os.path.join(self.current_dir, "imagens", "grama_1.png"))
+        self.grama_2 = pygame.image.load(os.path.join(self.current_dir, "imagens", "grama_2.png"))
+        self.grama_3 = pygame.image.load(os.path.join(self.current_dir, "imagens", "grama_3.png"))
+        self.rua = pygame.image.load(os.path.join(self.current_dir, "imagens", "rua_full.png"))
+        self.rio = pygame.image.load(os.path.join(self.current_dir, "imagens", "rio_full.png"))
+        self.linha_chegada = pygame.image.load(os.path.join(self.current_dir, "imagens", "chegada.png"))
 
     def desenhar(self, tela):
         # Linha de chegada

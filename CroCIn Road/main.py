@@ -1,9 +1,10 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from car import RightCar, LeftCar  # Importe as classes do arquivo car.py
+from car import RightCar, LeftCar  
 from personagem import Personagem
 from cenario import Cenario
+import time 
 
 pygame.init()
 
@@ -38,6 +39,13 @@ while True:
             pygame.quit()
             exit()
 
+    #Checando colisão dos carros
+    colisao1 = car1.check_colisao(car1.x, car1.y, personagem.x, personagem.y)
+    if colisao1:
+        time.sleep(0.05)
+        print('GAME OVER')
+        break
+    
     # Desenhar os carros 
     car1.draw(tela)
     car1.drive()

@@ -1,10 +1,10 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from car import RightCar, LeftCar  
+from car import RightCar, LeftCar
 from personagem import Personagem
 from cenario import Cenario
-import time 
+import time
 
 pygame.init()
 
@@ -14,14 +14,14 @@ altura = 800
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("CroCIn Road")
 
-tamanho = 40    
+tamanho = 40
 
-#Criando o personagem 
+# Criando o personagem
 personagem = Personagem(
     largura / 2 - tamanho / 2, altura - 75, tamanho, tela
-) 
+)
 
-#Criando os carros, posição e velocidade
+# Criando os carros, posição e velocidade
 car1 = RightCar(300, 500, 1, largura)
 
 # Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
@@ -30,7 +30,9 @@ cor_fundo = (34, 139, 34)
 cenario = Cenario(largura, altura)
 
 while True:
-    
+    # Preencher a tela com a cor de fundo para limpar o quadro anterior
+    tela.fill(cor_fundo)
+
     # Desenho do cenario
     cenario.desenhar(tela)
 
@@ -39,14 +41,14 @@ while True:
             pygame.quit()
             exit()
 
-    #Checando colisão dos carros
+    # Checando colisão dos carros
     colisao1 = car1.check_colisao(car1.x, car1.y, personagem.x, personagem.y)
     if colisao1:
         time.sleep(0.05)
         print('GAME OVER')
         break
-    
-    # Desenhar os carros 
+
+    # Desenhar os carros
     car1.draw(tela)
     car1.drive()
     car1.check_boundary()

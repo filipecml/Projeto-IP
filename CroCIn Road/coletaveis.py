@@ -1,47 +1,68 @@
 import pygame
-import os
 
-# Coordenadas e tamanhos dos coletáveis
-coletaveis_info = [
-    {"coordenadas": (500, 500), "tamanho": (50, 50), "imagem": "coxinha.png"},
-    {"coordenadas": (600, 300), "tamanho": (50, 50), "imagem": "marmita.png"},
-    {"coordenadas": (1000, 500), "tamanho": (50, 50), "imagem": "coca_cafe.png"},
-]
+class Personagem:
+        
+        def __init__(self, x, y, tamanho, tela):
+            self.x = x
+            self.y = y
+            self.tamanho = tamanho
+            self.cor = (255, 255, 255)
+            self.tela = tela
+            self.velocidade_maxima = 2.0
+            self.aceleracao = 0.1
+            self.velocidade_atual = 0.0
+            self.vidas = 3
+            self.coletaveis = 0
 
-def carregar_e_redimensionar_imagem(nome_arquivo, novo_tamanho):
-    # Obtém o diretório atual do arquivo coletaveis.py
-    current_dir = os.path.dirname(__file__)
+            self.is_moving = False
+            self.movement_step = self.tamanho
+            self.hitbox = pygame.Rect(self.x, self.y, tamanho, tamanho)
 
-    # Carrega a imagem
-    imagem = pygame.image.load(os.path.join(current_dir, "imagens", nome_arquivo))
-
-    # Redimensiona a imagem para o tamanho desejado
-    imagem = pygame.transform.scale(imagem, novo_tamanho)
-
-    return imagem
-
-class Coletavel(pygame.sprite.Sprite):
-    def __init__(self, x, y, tamanho, imagem):
-        super().__init__()
-
-        self.image = carregar_e_redimensionar_imagem(imagem, tamanho)
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        def movimento(self, dx, dy):
+            # Atualize a posição do personagem
+            self.x += dx
+            self.y += dy
 
 
-def cria_coletaveis():
-    lista_de_coletaveis = pygame.sprite.Group()
+        def processar_eventos(self):
+            keys = pygame.key.get_pressed()
+            
+            self.hitbox.x = self.x
+            self.hitbox.y = self.y
+            
+            # Se o personagem não estiver em movimento e uma tecla for pressionada
+            if not self.is_moving:
+                if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+                    self.movimento(-self.movement_step, 0)
+                    self.is_moving = True
+                elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+                    self.movimento(self.movement_step, 0)
+                    self.is_moving = True
+                elif keys[pygame.K_UP] or keys[pygame.K_w]:
+                    self.movimento(0, -self.movement_step)
+                    self.is_moving = True
+                elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
+                    self.movimento(0, self.movement_step)
+                    self.is_moving = True
 
-    for coletavel_info in coletaveis_info:
-        x, y = coletavel_info["coordenadas"]
-        tamanho = coletavel_info["tamanho"]
-        imagem = coletavel_info["imagem"]
-        coletavel = Coletavel(x, y, tamanho, imagem)
-        lista_de_coletaveis.add(coletavel)
+                
 
-    return lista_de_coletaveis
+            # Se uma tecla diferente for pressionada, pare o movimento
+            elif (
+                not (keys[pygame.K_LEFT] or keys[pygame.K_a] or
+                    keys[pygame.K_RIGHT] or keys[pygame.K_d] or
+                    keys[pygame.K_UP] or keys[pygame.K_w] or
+                    keys[pygame.K_DOWN] or keys[pygame.K_s])
+            ):
+                self.is_moving = False
 
+            # Verifique os limites da tela
+            if self.x < 0:
+                self.x = 0
+            elif self.x + self.tamanho > self.tela.get_width():
+                self.x = self.tela.get_width() - self.tamanho
 
-# Lista de obstáculos exportada para ser usada em main.py
-lista_de_coletaveis = cria_coletaveis()
+            if self.y < 0:
+                self.y = 0
+            elif self.y + self.tamanho > self.tela.get_height():
+                self.y = self.tela.get_height() - self.tamanho

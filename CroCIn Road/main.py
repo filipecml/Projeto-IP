@@ -24,27 +24,6 @@ tamanho = 40
 posicao_inicial_personagem = (largura / 2 - tamanho / 2, altura - 75)
 posicoes_ocupadas_vermelhas = []
 
-def spawn_carro_vermelho():
-    # Defina uma margem mínima para evitar que os carros se sobreponham
-    margem_minima = 200
-
-    # Escolha uma posição aleatória para o novo carro vermelho
-    posicao_x = random.randint(largura, largura + margem_minima)
-    posicao_y = random.randint(300, 600)  # Defina um intervalo para a altura
-
-    # Verifique se a posição está ocupada por outros carros vermelhos
-    while any(
-        abs(posicao_x - x) < margem_minima and abs(posicao_y - y) < margem_minima
-        for x, y in posicoes_ocupadas_vermelhas
-    ):
-        posicao_x = random.randint(largura, largura + margem_minima)
-        posicao_y = random.randint(300, 600)
-
-    # Crie o novo carro vermelho
-    carros_vermelhos.append(RightCar(posicao_x, posicao_y, 2, largura))
-
-    # Adicione a posição do novo carro à lista de posições ocupadas
-    posicoes_ocupadas_vermelhas.append((posicao_x, posicao_y))    
 # Criando o personagem 
 personagem = Personagem(
     posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho, tela

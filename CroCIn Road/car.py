@@ -16,7 +16,7 @@ class RightCar:
         self.x_change = x_change
         self.largura = largura
         original_image = pygame.image.load(os.path.join(image_dir, 'carredright.png'))
-        self.image = pygame.transform.scale(original_image, (100, 80))  # Redimensionar a imagem
+        self.image = pygame.transform.scale(original_image, (80, 50))  # Redimensionar a imagem
         self.hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def draw(self, surface):

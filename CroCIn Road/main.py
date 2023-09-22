@@ -80,9 +80,16 @@ ultima_spawnagem_azul = pygame.time.get_ticks()
 ultima_spawnagem_vermelho = pygame.time.get_ticks()
 
 while True:
+    pygame.font.init()
+
+    tela.fill(cor_fundo)
     
     # Desenho do cenário
     cenario.desenhar(tela)
+
+    fonte = pygame.font.SysFont("impact", 25)
+    label = fonte.render(f"Vidas: {personagem.vidas}", 1, (255, 255, 255))
+    tela.blit(label, (400, 750))
 
     for event in pygame.event.get():
         if event.type == QUIT:

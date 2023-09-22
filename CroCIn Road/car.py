@@ -16,46 +16,50 @@ class RightCar:
         self.x_change = x_change
         self.largura = largura
         original_image = pygame.image.load(os.path.join(image_dir, 'carredright.png'))
-        self.image = pygame.transform.scale(original_image, (80, 40))  # Redimensionar a imagem
+        self.image = pygame.transform.scale(original_image, (100, 80))  # Redimensionar a imagem
+        self.hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
-        
+        self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
+
     def drive(self):
         self.x -= self.x_change
+        self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
 
     def check_boundary(self):
         if self.x < -70:
             self.x = self.largura
 
-    def check_colisao(self, car_x, car_y, player_x, player_y):
-        distance = math.sqrt((math.pow(player_x - car_x, 2) + math.pow(player_y - car_y, 2)))
-        if distance < 27:
-            return True
-        else:
-            return False
+    def check_colisao(self, player_hitbox):
 
+        # Verifique a colisão usando o hitbox do jogador
+        return self.hitbox.colliderect(player_hitbox)
+
+   
 class LeftCar:
-    def __init__(self, x, y, x_change):
+    def __init__(self, x, y, x_change, largura):
         self.x = x
         self.y = y
         self.x_change = x_change
+        self.largura = largura
         original_image = pygame.image.load(os.path.join(image_dir, 'carblue.png'))
-        self.image = pygame.transform.scale(original_image, (80, 40))  # Redimensionar a imagem
+        self.image = pygame.transform.scale(original_image, (100, 50))  # Redimensionar a imagem
+        self.hitbox = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
-        
+        self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
+
     def drive(self):
         self.x += self.x_change
+        self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
 
     def check_boundary(self):
         if self.x > 600:
             self.x = -70
 
-    def check_colisao(self, car_x, car_y, player_x, player_y):
-        distance = math.sqrt((math.pow(player_x - car_x, 2) + math.pow(player_y - car_y, 2)))
-        if distance < 27:
-            return True
-        else:
-            return False
+    def check_colisao(self, player_hitbox):
+
+        # Verifique a colisão usando o hitbox do jogador
+        return self.hitbox.colliderect(player_hitbox)

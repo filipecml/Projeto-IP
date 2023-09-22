@@ -1,16 +1,16 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from car import RightCar, LeftCar
+from car import LeftCar, RightVan, RightCar
 from personagem import Personagem
 from cenario import Cenario
-import random
 
 pygame.init()
 
 # Defina o tempo de spawn para cada tipo de carro (em milissegundos)
 tempo_de_spawn_carro_azul = 1000  # 3 segundos
-tempo_de_spawn_carro_vermelho = 1000  # 2 segundos
+tempo_de_spawn_carro_vermelho = 1500  # 2 segundos
+tempo_de_spawn_van_direita = 8000
 
 largura = 600
 altura = 800
@@ -22,42 +22,38 @@ tamanho = 40
 
 # Defina a posição inicial do personagem
 posicao_inicial_personagem = (largura / 2 - tamanho / 2, altura - 75)
-posicoes_ocupadas_vermelhas = []
 
-def spawn_carro_vermelho():
-    # Defina uma margem mínima para evitar que os carros se sobreponham
-    margem_minima = 200
+# Posições fixas para o spawn do carro vermelho e da van
+posicao_spawn_vermelho = (largura, 430)
+posicao_spawn_van = (largura, 430)
 
-    # Escolha uma posição aleatória para o novo carro vermelho
-    posicao_x = random.randint(largura, largura + margem_minima)
-    posicao_y = random.randint(300, 600)  # Defina um intervalo para a altura
+# Variáveis para controlar o tempo desde o último spawn
+ultima_spawnagem_azul = pygame.time.get_ticks()
+ultima_spawnagem_vermelho = pygame.time.get_ticks()
+ultima_spawnagem_van = pygame.time.get_ticks()
 
-    # Verifique se a posição está ocupada por outros carros vermelhos
-    while any(
-        abs(posicao_x - x) < margem_minima and abs(posicao_y - y) < margem_minima
-        for x, y in posicoes_ocupadas_vermelhas
-    ):
-        posicao_x = random.randint(largura, largura + margem_minima)
-        posicao_y = random.randint(300, 600)
+# Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
+cor_fundo = (34, 139, 34)
 
-    # Crie o novo carro vermelho
-    carros_vermelhos.append(RightCar(posicao_x, posicao_y, 2, largura))
+cenario = Cenario(largura, altura)
 
-    # Adicione a posição do novo carro à lista de posições ocupadas
-    posicoes_ocupadas_vermelhas.append((posicao_x, posicao_y))    
-# Criando o personagem 
+# Criando o personagem
 personagem = Personagem(
     posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho, tela
-) 
+)
 
 carros_azuis = []
 carros_vermelhos = []
+van = []
 
 def spawn_carro_azul():
     carros_azuis.append(LeftCar(-70, 570, 5, largura))
 
 def spawn_carro_vermelho():
-    carros_vermelhos.append(RightCar(700, 460, 2, largura))
+    carros_vermelhos.append(RightCar(*posicao_spawn_vermelho, 2, largura))
+
+def spawn_van_direita_van():
+    van.append(RightVan(*posicao_spawn_van, 2, largura))
 
 def remove_carros_fora_da_tela():
     for carro in carros_azuis[:]:
@@ -66,21 +62,12 @@ def remove_carros_fora_da_tela():
     for carro in carros_vermelhos[:]:
         if carro.x < -70:
             carros_vermelhos.remove(carro)
-            # Remova a posição ocupada apenas se houver alguma na lista
-            if posicoes_ocupadas_vermelhas:
-                posicoes_ocupadas_vermelhas.pop(0)  # Remova a primeira posição
-
-# Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
-cor_fundo = (34, 139, 34)
-
-cenario = Cenario(largura, altura)
-
-# Tempos da última spawnagem para carros azuis e vermelhos
-ultima_spawnagem_azul = pygame.time.get_ticks()
-ultima_spawnagem_vermelho = pygame.time.get_ticks()
+    
+    for carro in van[:]:
+        if carro.x < -70:
+            van.remove(carro)
 
 while True:
-    
     # Desenho do cenário
     cenario.desenhar(tela)
 
@@ -99,6 +86,11 @@ while True:
     if tempo_atual - ultima_spawnagem_vermelho >= tempo_de_spawn_carro_vermelho:
         spawn_carro_vermelho()
         ultima_spawnagem_vermelho = tempo_atual
+
+    # Checa se é hora de fazer spawn de uma nova van
+    if tempo_atual - ultima_spawnagem_van >= tempo_de_spawn_van_direita:
+        spawn_van_direita_van()
+        ultima_spawnagem_van = tempo_atual
 
     # Checando colisão dos carros azuis
     for carro in carros_azuis:
@@ -127,6 +119,21 @@ while True:
             else:
                 # Redefina a posição do personagem para a posição inicial
                 personagem.x, personagem.y = posicao_inicial_personagem
+
+    # Checando colisão das vans
+    for carro in van:
+        colisao = carro.check_colisao(personagem.hitbox)
+        if colisao:
+            personagem.vidas -= 1  # Decrementa a vida do personagem
+            print(f'Vidas restantes: {personagem.vidas}')
+            if personagem.vidas <= 0:
+                print('GAME OVER')
+                pygame.quit()
+                exit()
+            else:
+                # Redefina a posição do personagem para a posição inicial
+                personagem.x, personagem.y = posicao_inicial_personagem
+
     # Desenhar e mover os carros azuis
     for carro in carros_azuis:
         carro.draw(tela)
@@ -134,6 +141,11 @@ while True:
 
     # Desenhar e mover os carros vermelhos
     for carro in carros_vermelhos:
+        carro.draw(tela)
+        carro.drive()
+
+    # Desenhar e mover as vans
+    for carro in van:
         carro.draw(tela)
         carro.drive()
 

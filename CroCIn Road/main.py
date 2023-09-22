@@ -36,7 +36,7 @@ def spawn_carro_azul():
     carros_azuis.append(LeftCar(-70, 570, 5, largura))
 
 def spawn_carro_vermelho():
-    carros_vermelhos.append(RightCar(700, 460, 2, largura))
+    carros_vermelhos.append(RightCar(700, 460, 5, largura))
 
 def remove_carros_fora_da_tela():
     for carro in carros_azuis[:]:
@@ -118,9 +118,6 @@ while True:
     # Chama a função de processar eventos do personagem
     personagem.processar_eventos()
 
-    # Desenhar o personagem
-    pygame.draw.rect(
-        tela, personagem.cor, (personagem.x, personagem.y, personagem.tamanho, personagem.tamanho)
-    )
+    personagem.draw(tela)
 
     pygame.display.update()

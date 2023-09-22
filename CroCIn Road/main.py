@@ -106,43 +106,29 @@ while True:
     if tempo_atual - ultima_spawnagem_vermelho >= tempo_de_spawn_carro_vermelho:
         spawn_carro_vermelho()
         ultima_spawnagem_vermelho = tempo_atual
+    
+    tipos_carro = (carros_vermelhos, carros_azuis)
 
-    # Checando colisão dos carros azuis
-    for carro in carros_azuis:
-        colisao = carro.check_colisao(personagem.hitbox)
-        if colisao:
-            personagem.vidas -= 1  # Decrementa a vida do personagem
-            print(f'Vidas restantes: {personagem.vidas}')
-            if personagem.vidas <= 0:
-                print('GAME OVER')
-                pygame.quit()
-                exit()
-            else:
-                # Redefina a posição do personagem para a posição inicial
-                personagem.x, personagem.y = posicao_inicial_personagem
-
-    # Checando colisão dos carros vermelhos
-    for carro in carros_vermelhos:
-        colisao = carro.check_colisao(personagem.hitbox)
-        if colisao:
-            personagem.vidas -= 1  # Decrementa a vida do personagem
-            print(f'Vidas restantes: {personagem.vidas}')
-            if personagem.vidas <= 0:
-                print('GAME OVER')
-                pygame.quit()
-                exit()
-            else:
-                # Redefina a posição do personagem para a posição inicial
-                personagem.x, personagem.y = posicao_inicial_personagem
-    # Desenhar e mover os carros azuis
-    for carro in carros_azuis:
-        carro.draw(tela)
-        carro.drive()
-
-    # Desenhar e mover os carros vermelhos
-    for carro in carros_vermelhos:
-        carro.draw(tela)
-        carro.drive()
+    # Checando colisão com os carros
+    for tipo_carro in tipos_carro:
+        for carro in tipo_carro:
+            colisao = carro.check_colisao(personagem.hitbox)
+            if colisao:
+                personagem.vidas -= 1  # Decrementa a vida do personagem
+                print(f'Vidas restantes: {personagem.vidas}')
+                if personagem.vidas <= 0:
+                    print('GAME OVER')
+                    pygame.quit()
+                    exit()
+                else:
+                    # Redefina a posição do personagem para a posição inicial
+                    personagem.x, personagem.y = posicao_inicial_personagem
+    
+    # Desenhar e mover os carros na tela
+    for tipo_carro in tipos_carro:
+        for carro in tipo_carro:
+            carro.draw(tela)
+            carro.drive()
 
     remove_carros_fora_da_tela()
 

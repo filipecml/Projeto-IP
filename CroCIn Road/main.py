@@ -88,8 +88,12 @@ while True:
     cenario.desenhar(tela)
 
     fonte = pygame.font.SysFont("bahnschrift", 25)
-    label = fonte.render(f"Vidas: {personagem.vidas}", 1, (255, 255, 255))
-    tela.blit(label, (400, 750))
+
+    contador_vidas = fonte.render(f"Vidas: {personagem.vidas}", 1, (0, 0, 0))
+    tela.blit(contador_vidas, (450, 750))
+
+    contador_coletaveis = fonte.render(f"Coletáveis: {personagem.coletaveis}", 1, (0, 0, 0))
+    tela.blit(contador_coletaveis, (50, 750))
 
     for event in pygame.event.get():
         if event.type == QUIT:

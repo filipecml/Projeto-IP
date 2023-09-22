@@ -12,6 +12,7 @@ class Personagem:
             self.aceleracao = 0.1
             self.velocidade_atual = 0.0
             self.vidas = 3
+            self.coletaveis = 0
 
             self.is_moving = False
             self.movement_step = self.tamanho

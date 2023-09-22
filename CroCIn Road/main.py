@@ -9,8 +9,8 @@ import random
 pygame.init()
 
 # Defina o tempo de spawn para cada tipo de carro (em milissegundos)
-tempo_de_spawn_carro_azul = 1000  # 3 segundos
-tempo_de_spawn_carro_vermelho = 1000  # 2 segundos
+tempo_de_spawn_carro_azul = 1000 
+tempo_de_spawn_carro_vermelho = 1500
 
 largura = 600
 altura = 800
@@ -87,7 +87,7 @@ while True:
     # Desenho do cenário
     cenario.desenhar(tela)
 
-    fonte = pygame.font.SysFont("impact", 25)
+    fonte = pygame.font.SysFont("bahnschrift", 25)
     label = fonte.render(f"Vidas: {personagem.vidas}", 1, (255, 255, 255))
     tela.blit(label, (400, 750))
 

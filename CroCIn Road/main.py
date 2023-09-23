@@ -1,62 +1,30 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from car import RightCar, LeftCar
+from car import RightCar, LeftCar, spawn_carro_azul, spawn_carro_vermelho, remove_carros_fora_da_tela, atualizar_tempos_spawnagem
 from personagem import Personagem
 from cenario import Cenario
-import random
+from settings import largura, altura, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_fundo, cor_texto, posicao_inicial_personagem
 
 pygame.init()
-
-# Defina o tempo de spawn para cada tipo de carro (em milissegundos)
-tempo_de_spawn_carro_azul = 1000
-tempo_de_spawn_carro_vermelho = 2000
-
-largura = 600
-altura = 800
 
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("CroCIn Road")
 
-tamanho = 40
-
-# Defina a posição inicial do personagem
-posicao_inicial_personagem = (largura / 2 - tamanho / 2, altura - 75)
-posicoes_ocupadas_vermelhas = []
-
 # Criando o personagem 
 personagem = Personagem(
-    posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho, tela
-) 
+    posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho_personagem, tela
+)
 
 carros_azuis = []
 carros_vermelhos = []
-
-def spawn_carro_azul():
-    carros_azuis.append(LeftCar(-70, 570, 2, largura))
-
-def spawn_carro_vermelho():
-    carros_vermelhos.append(RightCar(700, 460, 2, largura))
-
-def remove_carros_fora_da_tela():
-    for carro in carros_azuis[:]:
-        if carro.x > 600:
-            carros_azuis.remove(carro)
-    for carro in carros_vermelhos[:]:
-        if carro.x < -70:
-            carros_vermelhos.remove(carro)
-            # Remova a posição ocupada apenas se houver alguma na lista
-            if posicoes_ocupadas_vermelhas:
-                posicoes_ocupadas_vermelhas.pop(0)  # Remova a primeira posição
-
-# Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
-cor_fundo = (34, 139, 34)
+posicoes_ocupadas_vermelhas = []
 
 cenario = Cenario(largura, altura)
 
 # Tempos da última spawnagem para carros azuis e vermelhos
-ultima_spawnagem_azul = pygame.time.get_ticks()
-ultima_spawnagem_vermelho = pygame.time.get_ticks()
+ultima_spawnagem_azul = atualizar_tempos_spawnagem()
+ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()
 
 while True:
     pygame.font.init()
@@ -82,13 +50,13 @@ while True:
     # Checa se é hora de fazer spawn de um novo carro azul
     tempo_atual = pygame.time.get_ticks()
     if tempo_atual - ultima_spawnagem_azul >= tempo_de_spawn_carro_azul:
-        spawn_carro_azul()
-        ultima_spawnagem_azul = tempo_atual
+        spawn_carro_azul(carros_azuis, largura)  # Use a função em car.py
+        ultima_spawnagem_azul = atualizar_tempos_spawnagem()  # Atualize o tempo
 
     # Checa se é hora de fazer spawn de um novo carro vermelho
     if tempo_atual - ultima_spawnagem_vermelho >= tempo_de_spawn_carro_vermelho:
-        spawn_carro_vermelho()
-        ultima_spawnagem_vermelho = tempo_atual
+        spawn_carro_vermelho(carros_vermelhos, largura)  # Use a função em car.py
+        ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()  # Atualize o tempo
     
     tipos_carro = (carros_vermelhos, carros_azuis)
 
@@ -113,7 +81,8 @@ while True:
             carro.draw(tela)
             carro.drive()
 
-    remove_carros_fora_da_tela()
+    remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, posicoes_ocupadas_vermelhas)  # Use a função em car.py
+
 
     # Chama a função de processar eventos do personagem
     personagem.processar_eventos()

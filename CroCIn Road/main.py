@@ -9,8 +9,8 @@ import random
 pygame.init()
 
 # Defina o tempo de spawn para cada tipo de carro (em milissegundos)
-tempo_de_spawn_carro_azul = 1000 
-tempo_de_spawn_carro_vermelho = 1500
+tempo_de_spawn_carro_azul = 1000
+tempo_de_spawn_carro_vermelho = 2000
 
 largura = 600
 altura = 800
@@ -33,10 +33,10 @@ carros_azuis = []
 carros_vermelhos = []
 
 def spawn_carro_azul():
-    carros_azuis.append(LeftCar(-70, 570, 5, largura))
+    carros_azuis.append(LeftCar(-70, 570, 2, largura))
 
 def spawn_carro_vermelho():
-    carros_vermelhos.append(RightCar(700, 460, 5, largura))
+    carros_vermelhos.append(RightCar(700, 460, 2, largura))
 
 def remove_carros_fora_da_tela():
     for carro in carros_azuis[:]:

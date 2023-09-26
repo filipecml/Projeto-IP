@@ -15,7 +15,9 @@ class Personagem:
             self.aceleracao = 0.1
             self.velocidade_atual = 0.0
             self.vidas = 3
-            self.coletaveis = 0
+            self.marmitas = 0
+            self.cocas = 0
+            self.coxinhas = 0
             
             self.original_images = {'left' : pygame.image.load(os.path.join(image_dir, 'pessoa_lado_esquerdo.png')),
                             'right' : pygame.image.load(os.path.join(image_dir, 'pessoa_lado_direito.png')),

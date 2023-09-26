@@ -56,10 +56,10 @@ class LeftCar(Car):
             self.x = -70
 
 def spawn_carro_azul(carros_azuis, largura):
-    carros_azuis.append(LeftCar(-70, 570, 2, largura))
+    carros_azuis.append(LeftCar(-70, 570, 3, largura))
 
 def spawn_carro_vermelho(carros_vermelhos, largura):
-    carros_vermelhos.append(RightCar(700, 460, 2, largura))
+    carros_vermelhos.append(RightCar(700, 460, 4, largura))
 
 def remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, posicoes_ocupadas_vermelhas):
     for carro in carros_azuis[:]:

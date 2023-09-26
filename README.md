@@ -32,6 +32,6 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 - *settings.py* - Armazena constantes relativas às configurações da tela de display do jogo, da frequência de surgimento de carros, do tamanho e da posição inicial do personagem jogável no cenário.
 - *personagem.py* - Contém a classe *Personagem*, que, por sua vez, engloba todos os atributos (velocidade, posição, vidas disponíveis, coletáveis recolhidos, etc.) e ações (movimento, desenho na tela e tratamento de eventos) do jogador.
 - *cenario.py* - Envolve a classe *Cenário*, que instancia os sprites utilizados no ambiente ao fundo, e possui como única função o comportamento associado ao desenho das superfícies na tela.
-- *car.py* - Contém a superclasse relativa ao tipo de objeto *Carro*, a qual estabelece relações de herança com as classes de cada tipo de carro, e instancia seus atributos (tamanho, variação de posição no eixo X, sprite) e comportamentos
-- *coletaveis.py* -
-- *imagens* - 
+- *car.py* - Contém a superclasse relativa ao tipo de objeto *Carro*, a qual estabelece relações de herança com as classes de cada tipo de carro, e instancia seus atributos (tamanho, variação de posição no eixo X, sprite) e comportamentos (desenho na tela, movimentação, verificação de colisão e de limites).
+- *coletaveis.py* - Armazena também o tipo de objeto *Coletável*, seus atributos (posição, hitbox e sprite) e funções (desenho na tela e verificação de colisão).
+- *imagens* - Pasta responsável por guardar todos os sprites desenvolvidos e utilizados durante o jogo.

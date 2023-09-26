@@ -5,6 +5,8 @@ from car import RightCar, LeftCar, spawn_carro_azul, spawn_carro_vermelho, remov
 from personagem import Personagem
 from cenario import Cenario
 from settings import largura, altura, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_fundo, cor_texto, posicao_inicial_personagem
+from coletaveis import Coletavel
+from random import randint
 
 pygame.init()
 
@@ -15,6 +17,12 @@ pygame.display.set_caption("CroCIn Road")
 personagem = Personagem(
     posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho_personagem, tela
 )
+
+coca_cafe = Coletavel(400, 400, 'coca_cafe.png', tela)
+marmita = Coletavel(300, 300, 'marmita.png', tela)
+coxinha = Coletavel(200, 200, 'coxinha.png', tela)
+
+lista_coletaveis = (coca_cafe, marmita, coxinha)
 
 carros_azuis = []
 carros_vermelhos = []
@@ -34,13 +42,20 @@ while True:
     # Desenho do cenário
     cenario.desenhar(tela)
 
-    fonte = pygame.font.SysFont("bahnschrift", 25)
+    fonte_vidas = pygame.font.SysFont("bahnschrift", 25)
+    fonte_coletaveis = pygame.font.SysFont("bahnschrift", 20)
 
-    contador_vidas = fonte.render(f"Vidas: {personagem.vidas}", 1, (0, 0, 0))
-    tela.blit(contador_vidas, (450, 750))
+    contador_vidas = fonte_vidas.render(f"Vidas: {personagem.vidas}", 1, cor_texto)
+    tela.blit(contador_vidas, (500, 750))
 
-    contador_coletaveis = fonte.render(f"Coletáveis: {personagem.coletaveis}", 1, (0, 0, 0))
-    tela.blit(contador_coletaveis, (50, 750))
+    contador_cocas = fonte_coletaveis.render(f"Cocas: {personagem.cocas}", 1, cor_texto)
+    tela.blit(contador_cocas, (25, 750))
+    
+    contador_marmitas = fonte_coletaveis.render(f"Marmitas: {personagem.marmitas}", 1, cor_texto)
+    tela.blit(contador_marmitas, (125, 750))
+    
+    contador_coxinhas = fonte_coletaveis.render(f"Coxinhas: {personagem.coxinhas}", 1, cor_texto)
+    tela.blit(contador_coxinhas, (250, 750))
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -83,10 +98,24 @@ while True:
 
     remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, posicoes_ocupadas_vermelhas)  # Use a função em car.py
 
-
+    for coletavel in lista_coletaveis:
+        colisao = coletavel.check_colisao(personagem.hitbox)
+        if colisao:
+            if lista_coletaveis.index(coletavel) == 0: #Coca-café
+                personagem.cocas += 1
+            elif lista_coletaveis.index(coletavel) == 1: #Marmita
+                personagem.marmitas += 1
+            elif lista_coletaveis.index(coletavel) == 2: #Coxinha
+                personagem.coxinhas += 1
+            coletavel.x = randint(100, 500)
+            coletavel.y = randint(100, 700)
+        
     # Chama a função de processar eventos do personagem
     personagem.processar_eventos()
 
     personagem.draw(tela)
+    
+    for coletavel in lista_coletaveis:
+        coletavel.draw(tela)
 
     pygame.display.update()

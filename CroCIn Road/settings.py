@@ -14,4 +14,4 @@ cor_fundo = (34, 139, 34)
 cor_texto = (0, 0, 0)
 
 # Posição inicial do personagem
-posicao_inicial_personagem = (largura / 2 - tamanho_personagem / 2, altura - 75)
+posicao_inicial_personagem = (largura / 2 - tamanho_personagem / 2, altura - 125)

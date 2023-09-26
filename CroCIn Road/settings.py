@@ -3,7 +3,7 @@ largura = 600
 altura = 800
 
 # Configurações dos carros
-tempo_de_spawn_carro_azul = 1000
+tempo_de_spawn_carro_azul = 1750
 tempo_de_spawn_carro_vermelho = 2000
 
 # Tamanho do personagem

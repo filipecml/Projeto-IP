@@ -80,16 +80,16 @@ class Truck(Car):
             self.x = -70
 
 def spawn_carro_azul(carros_azuis, largura):
-    carros_azuis.append(BlueCar(-70, 570, 3, largura))
+    carros_azuis.append(BlueCar(-70, 570, 4, largura))
 
 def spawn_carro_vermelho(carros_vermelhos, largura):
     carros_vermelhos.append(RedCar(700, 460, 4, largura))
 
 def spawn_van(vans, largura):
-    vans.append(Van(-70, 270, 3, largura))
+    vans.append(Van(-70, 270, 5, largura))
 
 def spawn_truck(trucks, largura):
-    trucks.append(Truck(-70, 160, 3, largura))
+    trucks.append(Truck(-70, 160, 6, largura))
 
 def remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks):
     for carro in carros_azuis[:]:

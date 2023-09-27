@@ -38,8 +38,14 @@ class Personagem:
         def draw(self, surface):
             surface.blit(self.image, (self.x, self.y))
             self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
+        
+        def reset_status(self):
+            self.vidas = 3
+            self.cocas = 0
+            self.marmitas = 0
+            self.coxinhas = 0
 
-        def updates(self):
+        def processar_eventos(self):
             keys = pygame.key.get_pressed()
             
             self.hitbox.x = self.x

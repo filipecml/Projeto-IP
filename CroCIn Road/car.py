@@ -30,7 +30,7 @@ class Car:
         return self.hitbox.colliderect(player_hitbox)
 
 # Classe derivada para o carro que se move para a direita
-class RightCar(Car):
+class RedCar(Car):
     def __init__(self, x, y, x_change, largura):
         super().__init__(x, y, x_change, largura, 'carredright.png')
 
@@ -43,7 +43,7 @@ class RightCar(Car):
             self.x = self.largura
 
 # Classe derivada para o carro que se move para a esquerda
-class LeftCar(Car):
+class BlueCar(Car):
     def __init__(self, x, y, x_change, largura):
         super().__init__(x, y, x_change, largura, 'carblue.png')
 
@@ -55,23 +55,58 @@ class LeftCar(Car):
         if self.x > 600:
             self.x = -70
 
+class Van(Car):
+    def __init__(self, x, y, x_change, largura):
+        super().__init__(x, y, x_change, largura, 'van.png')
+    
+    def drive(self):
+        self.x += self.x_change
+        self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
+    
+    def check_boundary(self):
+        if self.x > 600:
+            self.x = -70
+
+class Truck(Car):
+    def __init__(self, x, y, x_change, largura):
+        super().__init__(x, y, x_change, largura, 'truck.png')
+
+    def drive(self):
+        self.x += self.x_change
+        self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
+
+    def check_boundary(self):
+        if self.x > 600:
+            self.x = -70
+
 def spawn_carro_azul(carros_azuis, largura):
-    carros_azuis.append(LeftCar(-70, 570, 3, largura))
+    carros_azuis.append(BlueCar(-70, 570, 3, largura))
 
 def spawn_carro_vermelho(carros_vermelhos, largura):
-    carros_vermelhos.append(RightCar(700, 460, 4, largura))
+    carros_vermelhos.append(RedCar(700, 460, 4, largura))
 
-def remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, posicoes_ocupadas_vermelhas):
+def spawn_van(vans, largura):
+    vans.append(Van(-70, 270, 3, largura))
+
+def spawn_truck(trucks, largura):
+    trucks.append(Truck(-70, 160, 3, largura))
+
+def remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks):
     for carro in carros_azuis[:]:
         if carro.x > 600:
             carros_azuis.remove(carro)
+    
+    for carro in vans[:]:
+        if carro.x > 600:
+            vans.remove(carro)
+    
     for carro in carros_vermelhos[:]:
         if carro.x < -70:
             carros_vermelhos.remove(carro)
-            if posicoes_ocupadas_vermelhas:
-                posicoes_ocupadas_vermelhas.pop(0)
+    
+    for carro in trucks[:]:
+        if carro.x < -70:
+            trucks.remove(carro)
 
 def atualizar_tempos_spawnagem():
     return pygame.time.get_ticks()
-
-posicoes_ocupadas_vermelhas = []

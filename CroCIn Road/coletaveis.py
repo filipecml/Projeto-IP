@@ -1,5 +1,6 @@
 import pygame
 import os
+from random import randint
 
 image_dir = os.path.join(os.path.dirname(__file__), 'imagens')
 
@@ -16,6 +17,10 @@ class Coletavel:
         def draw(self, surface):
             surface.blit(self.image, (self.x, self.y))
             self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
+
+        def cria_coletavel(self):
+            self.x = randint(100, 500)
+            self.y = randint(100, 700)
 
         def processar_eventos(self):
             self.hitbox.x = self.x

@@ -20,7 +20,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 
 ## Integrantes da equipe e sua participação
 
-- [Filipe Moreira (fmc)](https://github.com/filipecml) - Redação do *README.md*, implementação dos coletáveis
+- [Filipe Moreira (fmc)](https://github.com/filipecml) - Redação do *README.md*, implementação dos coletáveis, correção de bugs e ajustes de jogabilidade.
 - [Getúlio Junqueira (gjql)](https://github.com/getuliojql) - 
 - [João Guilherme Cavalcanti (jgrbc)](https://github.com/joaoguirbc) - 
 - [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - 

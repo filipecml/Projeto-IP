@@ -1,10 +1,10 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from car import RightCar, LeftCar, spawn_carro_azul, spawn_carro_vermelho, remove_carros_fora_da_tela, atualizar_tempos_spawnagem
+from car import spawn_carro_azul, spawn_carro_vermelho, spawn_van, spawn_truck, remove_carros_fora_da_tela, atualizar_tempos_spawnagem
 from personagem import Personagem
 from cenario import Cenario
-from settings import largura, altura, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_fundo, cor_texto, posicao_inicial_personagem
+from settings import largura, altura, tempo_de_spawn_vans, tempo_de_spawn_trucks, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_fundo, cor_texto, posicao_inicial_personagem
 from coletaveis import Coletavel
 from random import randint
 
@@ -26,13 +26,16 @@ lista_coletaveis = (coca_cafe, marmita, coxinha)
 
 carros_azuis = []
 carros_vermelhos = []
-posicoes_ocupadas_vermelhas = []
+vans = []
+trucks = []
 
 cenario = Cenario(largura, altura)
 
 # Tempos da última spawnagem para carros azuis e vermelhos
 ultima_spawnagem_azul = atualizar_tempos_spawnagem()
 ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()
+ultima_spawnagem_vans = atualizar_tempos_spawnagem()
+ultima_spawnagem_trucks = atualizar_tempos_spawnagem()
 
 while True:
     pygame.font.init()
@@ -73,7 +76,15 @@ while True:
         spawn_carro_vermelho(carros_vermelhos, largura)  # Use a função em car.py
         ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()  # Atualize o tempo
     
-    tipos_carro = (carros_vermelhos, carros_azuis)
+    if tempo_atual - ultima_spawnagem_vans >= tempo_de_spawn_vans:
+        spawn_van(vans, largura)  # Use a função em car.py
+        ultima_spawnagem_vans = atualizar_tempos_spawnagem()  # Atualize o tempo
+    
+    if tempo_atual - ultima_spawnagem_trucks >= tempo_de_spawn_trucks:
+        spawn_truck(trucks, largura)  # Use a função em car.py
+        ultima_spawnagem_trucks = atualizar_tempos_spawnagem()  # Atualize o tempo
+    
+    tipos_carro = (carros_vermelhos, carros_azuis, vans, trucks)
 
     # Checando colisão com os carros
     for tipo_carro in tipos_carro:
@@ -96,7 +107,7 @@ while True:
             carro.draw(tela)
             carro.drive()
 
-    remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, posicoes_ocupadas_vermelhas)  # Use a função em car.py
+    remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks)  # Use a função em car.py
 
     for coletavel in lista_coletaveis:
         colisao = coletavel.check_colisao(personagem.hitbox)

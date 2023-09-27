@@ -39,7 +39,7 @@ class Personagem:
             surface.blit(self.image, (self.x, self.y))
             self.hitbox.topleft = (self.x, self.y)  # Atualizar a posição do hitbox
 
-        def processar_eventos(self):
+        def updates(self):
             keys = pygame.key.get_pressed()
             
             self.hitbox.x = self.x

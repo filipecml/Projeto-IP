@@ -1,10 +1,28 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from car import spawn_carro_azul, spawn_carro_vermelho, spawn_van, spawn_truck, remove_carros_fora_da_tela, atualizar_tempos_spawnagem
+from car import (
+    spawn_carro_azul,
+    spawn_carro_vermelho,
+    spawn_van,
+    spawn_truck,
+    remove_carros_fora_da_tela,
+    atualizar_tempos_spawnagem,
+)
 from personagem import Personagem
 from cenario import Cenario
-from settings import largura, altura, tempo_de_spawn_vans, tempo_de_spawn_trucks, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_fundo, cor_texto, posicao_inicial_personagem
+from settings import (
+    largura,
+    altura,
+    tempo_de_spawn_vans,
+    tempo_de_spawn_trucks,
+    tempo_de_spawn_carro_azul,
+    tempo_de_spawn_carro_vermelho,
+    tamanho_personagem,
+    cor_fundo,
+    cor_texto,
+    posicao_inicial_personagem,
+)
 from coletaveis import Coletavel
 from random import randint
 
@@ -13,14 +31,17 @@ pygame.init()
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("CroCIn Road")
 
-# Criando o personagem 
+# Criando o personagem
 personagem = Personagem(
-    posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho_personagem, tela
+    posicao_inicial_personagem[0],
+    posicao_inicial_personagem[1],
+    tamanho_personagem,
+    tela,
 )
 
-coca_cafe = Coletavel(400, 400, 'coca_cafe.png', tela)
-marmita = Coletavel(300, 300, 'marmita.png', tela)
-coxinha = Coletavel(200, 200, 'coxinha.png', tela)
+coca_cafe = Coletavel(400, 400, "coca_cafe.png", tela)
+marmita = Coletavel(300, 300, "marmita.png", tela)
+coxinha = Coletavel(200, 200, "coxinha.png", tela)
 
 lista_coletaveis = (coca_cafe, marmita, coxinha)
 
@@ -41,7 +62,7 @@ while True:
     pygame.font.init()
 
     tela.fill(cor_fundo)
-    
+
     # Desenho do cenário
     cenario.desenhar(tela)
 
@@ -53,11 +74,15 @@ while True:
 
     contador_cocas = fonte_coletaveis.render(f"Cocas: {personagem.cocas}", 1, cor_texto)
     tela.blit(contador_cocas, (25, 750))
-    
-    contador_marmitas = fonte_coletaveis.render(f"Marmitas: {personagem.marmitas}", 1, cor_texto)
+
+    contador_marmitas = fonte_coletaveis.render(
+        f"Marmitas: {personagem.marmitas}", 1, cor_texto
+    )
     tela.blit(contador_marmitas, (125, 750))
-    
-    contador_coxinhas = fonte_coletaveis.render(f"Coxinhas: {personagem.coxinhas}", 1, cor_texto)
+
+    contador_coxinhas = fonte_coletaveis.render(
+        f"Coxinhas: {personagem.coxinhas}", 1, cor_texto
+    )
     tela.blit(contador_coxinhas, (250, 750))
 
     for event in pygame.event.get():
@@ -75,15 +100,15 @@ while True:
     if tempo_atual - ultima_spawnagem_vermelho >= tempo_de_spawn_carro_vermelho:
         spawn_carro_vermelho(carros_vermelhos, largura)  # Use a função em car.py
         ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()  # Atualize o tempo
-    
+
     if tempo_atual - ultima_spawnagem_vans >= tempo_de_spawn_vans:
         spawn_van(vans, largura)  # Use a função em car.py
         ultima_spawnagem_vans = atualizar_tempos_spawnagem()  # Atualize o tempo
-    
+
     if tempo_atual - ultima_spawnagem_trucks >= tempo_de_spawn_trucks:
         spawn_truck(trucks, largura)  # Use a função em car.py
         ultima_spawnagem_trucks = atualizar_tempos_spawnagem()  # Atualize o tempo
-    
+
     tipos_carro = (carros_vermelhos, carros_azuis, vans, trucks)
 
     # Checando colisão com os carros
@@ -92,40 +117,42 @@ while True:
             colisao = carro.check_colisao(personagem.hitbox)
             if colisao:
                 personagem.vidas -= 1  # Decrementa a vida do personagem
-                print(f'Vidas restantes: {personagem.vidas}')
+                print(f"Vidas restantes: {personagem.vidas}")
                 if personagem.vidas <= 0:
-                    print('GAME OVER')
+                    print("GAME OVER")
                     pygame.quit()
                     exit()
                 else:
                     # Redefina a posição do personagem para a posição inicial
                     personagem.x, personagem.y = posicao_inicial_personagem
-    
+
     # Desenhar e mover os carros na tela
     for tipo_carro in tipos_carro:
         for carro in tipo_carro:
             carro.draw(tela)
             carro.drive()
 
-    remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks)  # Use a função em car.py
+    remove_carros_fora_da_tela(
+        carros_azuis, carros_vermelhos, vans, trucks
+    )  # Use a função em car.py
 
     for coletavel in lista_coletaveis:
         colisao = coletavel.check_colisao(personagem.hitbox)
         if colisao:
-            if lista_coletaveis.index(coletavel) == 0: #Coca-café
+            if lista_coletaveis.index(coletavel) == 0:  # Coca-café
                 personagem.cocas += 1
-            elif lista_coletaveis.index(coletavel) == 1: #Marmita
+            elif lista_coletaveis.index(coletavel) == 1:  # Marmita
                 personagem.marmitas += 1
-            elif lista_coletaveis.index(coletavel) == 2: #Coxinha
+            elif lista_coletaveis.index(coletavel) == 2:  # Coxinha
                 personagem.coxinhas += 1
             coletavel.x = randint(100, 500)
             coletavel.y = randint(100, 700)
-        
-    # Chama a função de processar eventos do personagem
-    personagem.processar_eventos()
+
+    # Chama a função de updates do personagem
+    personagem.updates()
 
     personagem.draw(tela)
-    
+
     for coletavel in lista_coletaveis:
         coletavel.draw(tela)
 

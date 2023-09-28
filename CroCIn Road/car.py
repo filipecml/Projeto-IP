@@ -1,7 +1,7 @@
 import pygame
 import os
 
-# Obtenha o caminho para a pasta "imagens" a partir do diretório atual
+# Caminho para a pasta 'imagens', onde estão os sprites dos veículos
 image_dir = os.path.join(os.path.dirname(__file__), 'imagens')
 
 # Classe base para carros

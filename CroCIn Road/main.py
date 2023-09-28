@@ -4,16 +4,13 @@ from sys import exit
 from car import spawn_carro_azul, spawn_carro_vermelho, spawn_van, spawn_truck, remove_carros_fora_da_tela, atualizar_tempos_spawnagem
 from personagem import Personagem
 from cenario import Cenario
-from settings import largura, altura, tempo_de_spawn_vans, tempo_de_spawn_trucks, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_fundo, cor_texto, posicao_inicial_personagem
+from settings import largura, altura, tempo_de_spawn_vans, tempo_de_spawn_trucks, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_texto, posicao_inicial_personagem
 from coletaveis import Coletavel
-from random import randint
 
 pygame.init()
 
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("CroCIn Road")
-
-vitoria = False
 
 # Criando o personagem 
 personagem = Personagem(
@@ -39,7 +36,6 @@ ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()
 ultima_spawnagem_vans = atualizar_tempos_spawnagem()
 ultima_spawnagem_trucks = atualizar_tempos_spawnagem()
 
-vitoria = False
 coletaveis_coletados = {
     "cocas": 0,
     "marmitas": 0,
@@ -47,9 +43,9 @@ coletaveis_coletados = {
 }
 
 while True:
+    vitoria = False
+    
     pygame.font.init()
-
-    tela.fill(cor_fundo)
     
     # Desenho do cenário
     cenario.desenhar(tela)
@@ -112,7 +108,6 @@ while True:
                     pygame.quit()
                     exit()
                 else:
-                    l
                     personagem.x, personagem.y = posicao_inicial_personagem
     
     # Desenhar e mover os carros na tela
@@ -122,67 +117,23 @@ while True:
             carro.drive()
 
     remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks)  
-        
-    if personagem.y <= 30:
-        if (
-            coletaveis_coletados["cocas"] >= 5
-            and coletaveis_coletados["marmitas"] >= 5
-            and coletaveis_coletados["coxinhas"] >= 5
-        ):
-            fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
-            texto_vitoria = fonte_vitoria.render("You Won!", 1, cor_texto)
-
-            fonte_vitoria = pygame.font.SysFont(
-                "bahnschrift", 20
-            )
-            texto_continua = fonte_vitoria.render(
-                "(Press 'S' to continue or 'N' to exit)", 1, cor_texto
-            )
-
-            tela.blit(texto_vitoria, (215, 350))
-            tela.blit(texto_continua, (150, 395))
-
-            continua = False
-
-            response = pygame.key.get_pressed()
-
-            if response[pygame.K_s]:
-                continua = True
-
-                for coletavel in lista_coletaveis:
-                    lista_coletaveis.remove(coletavel)
-
-                lista_coletaveis = [coca_cafe, marmita, coxinha]
-                for coletavel in lista_coletaveis:
-                    coletavel.cria_coletavel()
-
-                personagem.reset_status()
-                personagem.x = posicao_inicial_personagem[0]
-                personagem.y = posicao_inicial_personagem[1]
-            elif response[pygame.K_n]:
-                pygame.quit()
-                exit()
-            vitoria = True
 
     for coletavel in lista_coletaveis:
         colisao = coletavel.check_colisao(personagem.hitbox)
         if colisao:
             if lista_coletaveis.index(coletavel) == 0:  # Coca-café
                 personagem.cocas += 1
-                coletaveis_coletados["cocas"] += 1
             elif lista_coletaveis.index(coletavel) == 1:  # Marmita
                 personagem.marmitas += 1
-                coletaveis_coletados["marmitas"] += 1
             elif lista_coletaveis.index(coletavel) == 2:  # Coxinha
                 personagem.coxinhas += 1
-                coletaveis_coletados["coxinhas"] += 1
             coletavel.cria_coletavel()
 
     #Verifica a vitoria 
     if (
-        coletaveis_coletados["cocas"] >= 5
-        and coletaveis_coletados["marmitas"] >= 5
-        and coletaveis_coletados["coxinhas"] >= 5
+        personagem.cocas >= 5
+        and personagem.marmitas >= 5
+        and personagem.coxinhas >= 5
         and personagem.y <= 30
     ):
         fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
@@ -196,7 +147,7 @@ while True:
         )
 
         tela.blit(texto_vitoria, (215, 350))
-        tela.blit(texto_continua, (150, 395))
+        tela.blit(texto_continua, (145, 395))
 
         continua = False
 

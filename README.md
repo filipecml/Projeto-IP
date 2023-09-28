@@ -23,7 +23,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 - [Filipe Moreira (fmc)](https://github.com/filipecml) - Redação do *README.md*, implementação dos coletáveis, correção de bugs e ajustes de jogabilidade.
 - [Getúlio Junqueira (gjql)](https://github.com/getuliojql) - 
 - [João Guilherme Cavalcanti (jgrbc)](https://github.com/joaoguirbc) - Implementação e correções pontuais do cenário.
-- [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - 
+- [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - Desenvolvimento e interatividade dos obstáculos com o personagem, criação das sprites dos coletáveis e importação de algumas bibliotecas PyGame na Main.py.
 - [Leonardo Brahim (lbt)](https://github.com/leonardobrahim) - 
 
 ## Organização do código

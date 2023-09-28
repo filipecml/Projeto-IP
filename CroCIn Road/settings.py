@@ -1,3 +1,6 @@
+import pygame
+import os
+
 # Configurações da tela
 largura = 600
 altura = 800
@@ -17,3 +20,7 @@ cor_texto = (0, 0, 0)
 
 # Posição inicial do personagem
 posicao_inicial_personagem = (largura / 2 - tamanho_personagem / 2, altura - 125)
+
+
+image_dir = os.path.join(os.path.dirname(__file__), 'imagens')
+

@@ -8,6 +8,7 @@ coletaveis_info = [
     {"coordenadas": (1000, 500), "tamanho": (50, 50), "imagem": "coca_cafe.png"},
 ]
 
+
 def carregar_e_redimensionar_imagem(nome_arquivo, novo_tamanho):
     # Obtém o diretório atual do arquivo coletaveis.py
     current_dir = os.path.dirname(__file__)
@@ -19,6 +20,7 @@ def carregar_e_redimensionar_imagem(nome_arquivo, novo_tamanho):
     imagem = pygame.transform.scale(imagem, novo_tamanho)
 
     return imagem
+
 
 class Coletavel(pygame.sprite.Sprite):
     def __init__(self, x, y, tamanho, imagem):

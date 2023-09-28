@@ -22,8 +22,6 @@ personagem = Personagem(
 # Cor de fundo verde mais escuro (por exemplo, RGB 34, 139, 34)
 cor_fundo = (34, 139, 34)
 
-
-
 cenario = Cenario(largura, altura)
 
 while True:
@@ -35,12 +33,11 @@ while True:
             pygame.quit()
             exit()
 
-    
     # Atualize e desenhe os obstáculos dentro do loop principal
     lista_de_obstaculos.update()
-    #lista_de_obstaculos.draw(tela)
+    # lista_de_obstaculos.draw(tela)
     lista_de_coletaveis.update()
-    #lista_de_coletaveis.draw(tela)
+    # lista_de_coletaveis.draw(tela)
 
     # Chame a função de processar eventos do personagem
     personagem.processar_eventos()
@@ -49,5 +46,3 @@ while True:
     personagem.criar_personagem()
 
     pygame.display.update()
-
-

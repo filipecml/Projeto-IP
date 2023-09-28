@@ -1,7 +1,8 @@
 import pygame
 
+
 class Personagem:
-    
+
     def __init__(self, x, y, tamanho, tela):
         self.x = x
         self.y = y
@@ -42,5 +43,4 @@ class Personagem:
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.movimento(0, self.velocidade)
 
-        #COLOCAR EVENTO DE COLISÃO
-        
+        # COLOCAR EVENTO DE COLISÃO

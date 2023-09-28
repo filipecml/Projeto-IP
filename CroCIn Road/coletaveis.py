@@ -27,5 +27,5 @@ class Coletavel:
             self.hitbox.y = self.y
         
         def check_colisao(self, player_hitbox):
-            # Verifique a colisão usando o hitbox do jogador
+            # Verifica a colisão usando o hitbox do jogador
             return self.hitbox.colliderect(player_hitbox)

@@ -23,7 +23,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 - [Filipe Moreira (fmc)](https://github.com/filipecml) - Redação do *README.md*, implementação dos coletáveis, correção de bugs e ajustes de jogabilidade.
 - [Getúlio Junqueira (gjql)](https://github.com/getuliojql) - 
 - [João Guilherme Cavalcanti (jgrbc)](https://github.com/joaoguirbc) - Implementação e correções pontuais do cenário.
-- [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - Desenvolvimento e interatividade dos obstáculos com o personagem, criação das sprites dos coletáveis e importação de algumas bibliotecas PyGame na Main.py.
+- [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - Desenvolvimento e interatividade dos obstáculos com o personagem, criação das sprites dos coletáveis e importação de bibliotecas, classes e funções.
 - [Leonardo Brahim (lbt)](https://github.com/leonardobrahim) - 
 
 ## Organização do código
@@ -50,4 +50,12 @@ A compreensão estrutural, por exemplo, acerca do funcionamento do ambiente do j
 
 Além disso, o norteamento do projeto em torno da **Programação Orientada a Objeto (POO)** foi de extrema relevância, de tal forma que configurou-se como o eixo central de todo o desenvolvimento do sistema interativo. Por meio da subidivisão do código em múltiplos arquivos e scripts responsáveis por partições independentes do programa, bem como da criação de classes e superclasses únicas para cada tipo de objeto envolvido no jogo, tornou-se possível a construção desse projeto de forma coesa, funcional e de acordo com boas práticas.
 
+## Desafios, erros e lições
 
+No decorrer da concepção e do desenvolvimento do sistema interativo, foi evidente o surgimento de diversos tipos de problemas, não apenas quanto à compreensão sobre o Git e GitHub e ao seu uso de forma colaborativa, mas também em relação ao domínio sobre a Programação Orientada a Objetos e o funcionamento dos recursos da biblioteca PyGame. Contudo, através do compartilhamento de experiências e conhecimentos entre a equipe, foi possível transpor esses obstáculos.
+
+A escrita conjunta e simultânea do código - o que demandou uma adaptação coletiva aos estilos de escrita e organização individuais -, bem como uma comunicação rápida e eficiente entre os integrantes da equipe, também fizeram parte do rol de desafios enfrentados no desenrolar do projeto, o que também foi superado à medida que houve uma melhora da artculação e sintonia do grupo.
+
+Quanto aos erros, foram evidentes, principalmente no transcorrer de determinadas etapas da construção do jogo, deslizes como o déficit de organização e modularização do código, fazendo com que a repetição de trechos ambíguos de código fosse percebida com certa frequência. Isso poderia ter sido evitado, por exemplo, caso tivessemos construído discussões coletivas de maneira prévia à submissão dos códigos feitos individualmente, dando destaque a sua escrita e não apenas ao resultado visto dentro do sistema.
+
+Em última instância, superadas as adversidades em questão, este projeto foi uma rara oportunidade para a edificação de múltiplos aprendizados, verificados na consolidação do domínio em relação às práticas de programação em Python, compreensão geral sobre o funcionamento do Git e dos repositórios GitHub, e na construção de experiências no desenvolvimento de sistemas interativos. Nesse sentido, a criação do 'CroCIn Road' mostrou-se extremamente próspera e vitoriosa à equipe.

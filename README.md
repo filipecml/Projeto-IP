@@ -44,4 +44,10 @@ Como ferramenta externa, nos valemos também da plataforma online [Piskel](https
 
 ## Conceitos didáticos abordados
 
-É notório que todo o conteúdo ministrado na disciplina foi atravessado no decorrer do desenvolvimento do jogo, desde simples condicionais para verificação de eventos e laços de repetição responsáveis pelo controle da execução do sistema, até o uso de listas, tuplas e dicionários (estruturas de dados) para o armazenamento de informações/objetos e a organização do código em funções modularizáveis.
+É notório que todo o conteúdo ministrado na disciplina foi atravessado no decorrer do desenvolvimento do jogo, desde simples condicionais para verificação de eventos e laços de repetição responsáveis pelo controle de toda a execução do programa, até o uso de listas, tuplas e dicionários (estruturas de dados) para o armazenamento de informações/objetos e a organização do código em funções modularizáveis e classes.
+
+A compreensão estrutural, por exemplo, acerca do funcionamento do ambiente do jogo como uma matriz de coordenadas, cuja visualização pode ser percebida como um plano cartesiano com eixo das ordenadas invertido, foi um ponto fundamental na concepção do sistema interativo. Isso porque a implementação de quaisquer objetos na tela depende de atribuições posicionais na matriz, ou seja, tuplas de coordenadas que indicam precisamente onde um elemento do ambiente será desenhado.
+
+Além disso, o norteamento do projeto em torno da **Programação Orientada a Objeto (POO)** foi de extrema relevância, de tal forma que configurou-se como o eixo central de todo o desenvolvimento do sistema interativo. Por meio da subidivisão do código em múltiplos arquivos e scripts responsáveis por partições independentes do programa, bem como da criação de classes e superclasses únicas para cada tipo de objeto envolvido no jogo, tornou-se possível a construção desse projeto de forma coesa, funcional e de acordo com boas práticas.
+
+

@@ -39,6 +39,13 @@ ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()
 ultima_spawnagem_vans = atualizar_tempos_spawnagem()
 ultima_spawnagem_trucks = atualizar_tempos_spawnagem()
 
+vitoria = False
+coletaveis_coletados = {
+    "cocas": 0,
+    "marmitas": 0,
+    "coxinhas": 0
+}
+
 while True:
     pygame.font.init()
 
@@ -105,7 +112,7 @@ while True:
                     pygame.quit()
                     exit()
                 else:
-                    # Redefina a posição do personagem para a posição inicial
+                    l
                     personagem.x, personagem.y = posicao_inicial_personagem
     
     # Desenhar e mover os carros na tela
@@ -114,50 +121,103 @@ while True:
             carro.draw(tela)
             carro.drive()
 
-    remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks)  # Use a função em car.py
+    remove_carros_fora_da_tela(carros_azuis, carros_vermelhos, vans, trucks)  
+        
+    if personagem.y <= 30:
+        if (
+            coletaveis_coletados["cocas"] >= 5
+            and coletaveis_coletados["marmitas"] >= 5
+            and coletaveis_coletados["coxinhas"] >= 5
+        ):
+            fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
+            texto_vitoria = fonte_vitoria.render("You Won!", 1, cor_texto)
+
+            fonte_vitoria = pygame.font.SysFont(
+                "bahnschrift", 20
+            )
+            texto_continua = fonte_vitoria.render(
+                "(Press 'S' to continue or 'N' to exit)", 1, cor_texto
+            )
+
+            tela.blit(texto_vitoria, (215, 350))
+            tela.blit(texto_continua, (150, 395))
+
+            continua = False
+
+            response = pygame.key.get_pressed()
+
+            if response[pygame.K_s]:
+                continua = True
+
+                for coletavel in lista_coletaveis:
+                    lista_coletaveis.remove(coletavel)
+
+                lista_coletaveis = [coca_cafe, marmita, coxinha]
+                for coletavel in lista_coletaveis:
+                    coletavel.cria_coletavel()
+
+                personagem.reset_status()
+                personagem.x = posicao_inicial_personagem[0]
+                personagem.y = posicao_inicial_personagem[1]
+            elif response[pygame.K_n]:
+                pygame.quit()
+                exit()
+            vitoria = True
 
     for coletavel in lista_coletaveis:
         colisao = coletavel.check_colisao(personagem.hitbox)
         if colisao:
-            if lista_coletaveis.index(coletavel) == 0: #Coca-café
+            if lista_coletaveis.index(coletavel) == 0:  # Coca-café
                 personagem.cocas += 1
-            elif lista_coletaveis.index(coletavel) == 1: #Marmita
+                coletaveis_coletados["cocas"] += 1
+            elif lista_coletaveis.index(coletavel) == 1:  # Marmita
                 personagem.marmitas += 1
-            elif lista_coletaveis.index(coletavel) == 2: #Coxinha
+                coletaveis_coletados["marmitas"] += 1
+            elif lista_coletaveis.index(coletavel) == 2:  # Coxinha
                 personagem.coxinhas += 1
+                coletaveis_coletados["coxinhas"] += 1
             coletavel.cria_coletavel()
-        
-    if personagem.y <= 30:
+
+    #Verifica a vitoria 
+    if (
+        coletaveis_coletados["cocas"] >= 5
+        and coletaveis_coletados["marmitas"] >= 5
+        and coletaveis_coletados["coxinhas"] >= 5
+        and personagem.y <= 30
+    ):
         fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
         texto_vitoria = fonte_vitoria.render("You Won!", 1, cor_texto)
-        
-        fonte_vitoria = pygame.font.SysFont("bahnschrift", 20)
-        texto_continua = fonte_vitoria.render("(Press 'S' to continue or 'N' to exit)", 1, cor_texto)
-        
+
+        fonte_vitoria = pygame.font.SysFont(
+            "bahnschrift", 20
+        )
+        texto_continua = fonte_vitoria.render(
+            "(Press 'S' to continue or 'N' to exit)", 1, cor_texto
+        )
+
         tela.blit(texto_vitoria, (215, 350))
         tela.blit(texto_continua, (150, 395))
-        
+
         continua = False
-        
+
         response = pygame.key.get_pressed()
-        
+
         if response[pygame.K_s]:
             continua = True
-            
+
             for coletavel in lista_coletaveis:
                 lista_coletaveis.remove(coletavel)
-            
+
             lista_coletaveis = [coca_cafe, marmita, coxinha]
             for coletavel in lista_coletaveis:
                 coletavel.cria_coletavel()
-            
+
             personagem.reset_status()
             personagem.x = posicao_inicial_personagem[0]
             personagem.y = posicao_inicial_personagem[1]
         elif response[pygame.K_n]:
             pygame.quit()
             exit()
-        
         vitoria = True
     
     # Chama a função de processar eventos do personagem

@@ -24,7 +24,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 - [Getúlio Junqueira (gjql)](https://github.com/getuliojql) - Auxílio na implementação do cenário e na aplicação de boas práticas ao código.
 - [João Guilherme Cavalcanti (jgrbc)](https://github.com/joaoguirbc) - Implementação e correções pontuais do cenário.
 - [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - Desenvolvimento e interatividade dos objetos com o personagem, criação das sprites dos coletáveis e importação de bibliotecas, classes e funções.
-- [Leonardo Brahim (lbt)](https://github.com/leonardobrahim) - Desenvolvimento e implementação do personagem, tais quais suas funções e sprites.
+- [Leonardo Brahim (lbt)](https://github.com/leonardobrahim) - Desenvolvimento e implementação do personagem, tais quais suas funções e sprites, além da criação gráfica do menu.
 
 ## Organização do código
 

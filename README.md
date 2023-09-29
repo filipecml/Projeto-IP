@@ -9,7 +9,7 @@ Para que seja possível a execução do jogo em seu sistema operacional, são ne
 1. Instalação prévia do [Python](https://www.python.org/downloads/);
 2. Instalação da biblioteca PyGame (executando o comando `pip install pygame` no terminal/prompt de comando da sua máquina);
 3. Download e extração do .zip associado à branch 'main' do repositório desta página; e
-4. Execução do arquivo _main.py_, no prompt de comando ou em seu editor de preferência.
+4. Execução do arquivo _main.py_, no prompt de comando (`python main.py`) ou em seu editor de preferência.
 
 Com o jogo em execução, é possível controlar a movimentação do personagem de duas maneiras:
 

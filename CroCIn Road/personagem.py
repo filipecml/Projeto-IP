@@ -18,24 +18,31 @@ class Personagem:
         self.marmitas = 0
         self.cocas = 0
         self.coxinhas = 0
+        self.sprite_variation = 0
 
         self.original_images = {
-            "left": pygame.image.load(
-                os.path.join(image_dir, "personagem_andando_esquerda1.png")
-            ),
-            "right": pygame.image.load(
-                os.path.join(image_dir, "personagem_andando_direita1.png")
-            ),
-            "up": pygame.image.load(
-                os.path.join(image_dir, "personagem_andando_costas1.png")
-            ),
-            "down": pygame.image.load(
-                os.path.join(image_dir, "personagem_andando_frente1.png")
-            ),
+            "left": [pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_esquerda1.png")),
+                    pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_esquerda2.png"))],
+            "right": [pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_direita1.png")),
+                    pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_direita2.png"))],
+            "up": [pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_costas1.png")),
+                    pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_costas2.png"))],
+            "down": [pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_frente1.png")),
+                    pygame.image.load(
+                os.path.join(image_dir, "personagem_andando_frente2.png"))],
+            "still": pygame.image.load(
+                os.path.join(image_dir, "personagem_parado_costas.png")),
         }
 
         self.image = pygame.transform.scale(
-            self.original_images["up"], (self.tamanho, self.tamanho)
+            self.original_images["still"], (self.tamanho, self.tamanho)
         )  # Redimensionar a imagem
 
         self.is_moving = False
@@ -57,6 +64,12 @@ class Personagem:
         self.marmitas = 0
         self.coxinhas = 0
 
+    def check_sprite_variation(self):
+        if self.sprite_variation == 0:
+            self.sprite_variation = 1
+        else:
+            self.sprite_variation = 0
+
     def processar_eventos(self):
         keys = pygame.key.get_pressed()
 
@@ -65,30 +78,35 @@ class Personagem:
 
         # Se o personagem não estiver em movimento e uma tecla for pressionada
         if not self.is_moving:
+            
             if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 self.movimento(-self.movement_step, 0)
                 self.image = pygame.transform.scale(
-                    self.original_images["left"], (self.tamanho, self.tamanho)
+                    self.original_images["left"][self.sprite_variation], (self.tamanho, self.tamanho)
                 )
                 self.is_moving = True
+                self.check_sprite_variation()
             elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 self.movimento(self.movement_step, 0)
                 self.image = pygame.transform.scale(
-                    self.original_images["right"], (self.tamanho, self.tamanho)
+                    self.original_images["right"][self.sprite_variation], (self.tamanho, self.tamanho)
                 )
                 self.is_moving = True
+                self.check_sprite_variation()
             elif keys[pygame.K_UP] or keys[pygame.K_w]:
                 self.movimento(0, -self.movement_step)
                 self.image = pygame.transform.scale(
-                    self.original_images["up"], (self.tamanho, self.tamanho)
+                    self.original_images["up"][self.sprite_variation], (self.tamanho, self.tamanho)
                 )
                 self.is_moving = True
+                self.check_sprite_variation()
             elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
                 self.movimento(0, self.movement_step)
                 self.image = pygame.transform.scale(
-                    self.original_images["down"], (self.tamanho, self.tamanho)
+                    self.original_images["down"][self.sprite_variation], (self.tamanho, self.tamanho)
                 )
                 self.is_moving = True
+                self.check_sprite_variation()
 
         # Se uma tecla diferente for pressionada, pare o movimento
         elif not (

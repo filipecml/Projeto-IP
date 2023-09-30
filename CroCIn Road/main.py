@@ -19,6 +19,8 @@ menu = Menu()
 
 def main(tela, menu):
     
+    menu.executa_menu(tela)
+    
     # Criando o personagem 
     personagem = Personagem(
         posicao_inicial_personagem[0], posicao_inicial_personagem[1], tamanho_personagem, tela
@@ -44,8 +46,6 @@ def main(tela, menu):
     ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()
     ultima_spawnagem_vans = atualizar_tempos_spawnagem()
     ultima_spawnagem_trucks = atualizar_tempos_spawnagem()
-    
-    menu.executa_menu(tela)
 
     while True:
         # Inicializa o módulo de fontes do PyGame

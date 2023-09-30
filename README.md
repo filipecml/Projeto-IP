@@ -1,6 +1,8 @@
 # Projeto IP: CroCIn Road
 
-Inspirado em um dos maiores clássicos recentes da indústria de jogos _mobile_, o sistema interativo 'CroCIn Road' é uma releitura autoral, dotada de referências do cotidiano de estudantes do Centro de Informática da Universidade Federal de Pernambuco, cujo conceito reside em um jogo 2D, no estilo _arcade_ e de perspectiva _top-down_, e desenvolvido como projeto de conclusão da disciplina de Introdução à Programação.
+Inspirado em um dos maiores clássicos recentes da indústria de jogos _mobile_, o sistema interativo **CroCIn Road** é uma releitura autoral, dotada de referências do cotidiano de estudantes do Centro de Informática da Universidade Federal de Pernambuco, cujo conceito reside em um jogo 2D, no estilo _arcade_ e de perspectiva _top-down_, e desenvolvido como projeto de conclusão da disciplina de Introdução à Programação.
+
+Exibido em um display de resolução 600x800, simulando a tela de um dispositivo mobile, o game **CroCIn Road** tem como objetivo central que o jogador faça a coleta de, pelo menos, cinco coletáveis de cada tipo (coca-café, marmita e salgado), enquanto atravessa as pistas do cenário e evita ao máximo a colisão com os veículos. O contato com qualquer veículo leva a volta do jogador à posição inicial e à perda de um ponto de vida, de um total de três pontos.
 
 ## Instruções de execução e jogabilidade
 

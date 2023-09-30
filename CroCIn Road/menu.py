@@ -34,29 +34,29 @@ class Menu:
         
         return start, sair
 
-def executa_menu(menu, tela):
+    def executa_menu(self, tela):
     
-    start, sair = False, False
-    
-    # Loop de execução do menu
-    while True:
-        # Desenhando o menu na tela
-        menu.desenhar(tela)
+        start, sair = False, False
         
-        for event in pygame.event.get():
-            # Verifica o fim da execução do programa
-            if event.type == QUIT:
+        # Loop de execução do menu
+        while True:
+            # Desenhando o menu na tela
+            self.desenhar(tela)
+            
+            for event in pygame.event.get():
+                # Verifica o fim da execução do programa
+                if event.type == QUIT:
+                    pygame.quit()
+                    exit()
+                # Verifica se houve um clique no botão do mouse e se o botão foi o esquerdo
+                elif event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
+                    # Verifica qual dos botões do menu foi selecionado
+                    start, sair = self.verifica_clique(pygame.mouse.get_pos())
+            
+            if start:
+                break
+            elif sair:
                 pygame.quit()
                 exit()
-            # Verifica se houve um clique no botão do mouse e se o botão foi o esquerdo
-            elif event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
-                # Verifica qual dos botões do menu foi selecionado
-                start, sair = menu.verifica_clique(pygame.mouse.get_pos())
-        
-        if start:
-            break
-        elif sair:
-            pygame.quit()
-            exit()
-        
-        pygame.display.update()
+            
+            pygame.display.update()

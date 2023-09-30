@@ -20,7 +20,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 
 ## Integrantes da equipe e sua participação
 
-- [Filipe Moreira (fmc)](https://github.com/filipecml) - Redação do _README.md_, implementação dos coletáveis, organização de código, correção de bugs e ajustes de jogabilidade.
+- [Filipe Moreira (fmc)](https://github.com/filipecml) - Redação do _README.md_, implementação dos coletáveis e do menu, organização de código, correção de bugs e ajustes de jogabilidade.
 - [Getúlio Junqueira (gjql)](https://github.com/getuliojql) - Auxílio na implementação do cenário e na aplicação de boas práticas ao código.
 - [João Guilherme Cavalcanti (jgrbc)](https://github.com/joaoguirbc) - Implementação e correções pontuais do cenário.
 - [Kleberson Araújo (kab2)](https://github.com/KleberAraujoo) - Desenvolvimento e interatividade dos objetos com o personagem, criação das sprites dos coletáveis e importação de bibliotecas, classes e funções.
@@ -30,11 +30,13 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 
 - _main.py_ - Consiste no núcleo de toda a estruturação do sistema interativo, onde ocorrem a definição de variáveis de inicialização do programa, o instanciamento do módulo PyGame e de suas funções, bem como o controle do laço de repetição principal - responsável pelo processamento de eventos associados a objetos, cenário e personagem, e a continuidade ou quebra da execução do jogo.
 - _settings.py_ - Armazena constantes relativas às configurações da tela de display do jogo, da frequência de surgimento de carros, do tamanho e da posição inicial do personagem jogável no cenário.
+- _menu.py_ - Contém a classe _Menu_, que guarda as características e propriedades do menu inicial, bem como os comportamentos necessários ao seu funcionamento.
 - _personagem.py_ - Contém a classe _Personagem_, que, por sua vez, engloba todos os atributos (velocidade, posição, vidas disponíveis, coletáveis recolhidos, etc.) e ações (movimento, desenho na tela e tratamento de eventos) do jogador.
 - _cenario.py_ - Envolve a classe _Cenário_, que instancia os sprites utilizados no ambiente ao fundo, e possui como única função o comportamento associado ao desenho das superfícies na tela.
 - _car.py_ - Contém a superclasse relativa ao tipo de objeto _Carro_, a qual estabelece relações de herança com as classes de cada tipo de carro, e instancia seus atributos (tamanho, variação de posição no eixo X, sprite) e comportamentos (desenho na tela, movimentação, verificação de colisão e de limites).
 - _coletaveis.py_ - Armazena também o tipo de objeto _Coletável_, seus atributos (posição, hitbox e sprite) e funções (desenho na tela e verificação de colisão).
 - _imagens_ - Pasta responsável por guardar todos os sprites desenvolvidos e utilizados durante o jogo.
+- _sons_ - Pasta que armazena árquivos de áudio utilizados no decorrer do jogo
 
 ## Bibliotecas e ferramentas utilizadas
 

@@ -45,7 +45,7 @@ def main(tela, menu):
     ultima_spawnagem_vans = atualizar_tempos_spawnagem()
     ultima_spawnagem_trucks = atualizar_tempos_spawnagem()
     
-    executa_menu(menu, tela)
+    menu.executa_menu(tela)
 
     while True:
         # Inicializa o módulo de fontes do PyGame

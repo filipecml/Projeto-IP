@@ -4,6 +4,10 @@ Inspirado em um dos maiores clássicos recentes da indústria de jogos _mobile_,
 
 Simulando a tela de um dispositivo mobile, o game **CroCIn Road** é exibido em um display de resolução 600x800 pixels, e tem como objetivo central que o jogador recolha pelo menos cinco coletáveis de cada tipo (coca-café, marmita e salgado), enquanto atravessa as pistas do cenário e evita ao máximo a colisão com os veículos. O contato com qualquer um dos veículos leva a volta do jogador à posição inicial e à perda de um ponto de vida, de um total de três pontos.
 
+<p align="center">
+  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/5a33a75d-ada0-4991-89b6-7f5716d977ce">
+</p>
+
 ## Instruções de execução e jogabilidade
 
 Para que seja possível a execução do jogo em seu sistema operacional, são necessários:
@@ -46,6 +50,10 @@ Sem dúvidas, [PyGame](https://www.pygame.org/) constituiu a principal bibliotec
 
 Como ferramenta externa, nos valemos também da plataforma online [Piskel](https://www.piskelapp.com/), através da qual foram criadas as imagens incorporadas como sprites dos coletáveis, personagem, cenário, menu e alguns dos demais objetos utilizados no jogo.
 
+<p align="center">
+  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/d964eaca-e0e3-4a70-9c1d-b883f567df8d">
+</p>
+
 ## Conceitos didáticos abordados
 
 É notório que todo o conteúdo ministrado na disciplina foi atravessado no decorrer do desenvolvimento do jogo, desde simples condicionais para verificação de eventos e laços de repetição responsáveis pelo controle de toda a execução do programa, até o uso de listas, tuplas e dicionários (estruturas de dados) para o armazenamento de informações/objetos e a organização do código em funções modularizáveis e classes.
@@ -63,3 +71,7 @@ A escrita conjunta e simultânea do código - o que demandou uma adaptação col
 Quanto aos erros, foram evidentes, principalmente no transcorrer de determinadas etapas da construção do jogo, deslizes como o déficit de organização e modularização do código, fazendo com que a repetição de trechos ambíguos de código fosse percebida com certa frequência. Isso poderia ter sido evitado, por exemplo, caso tivessemos construído discussões coletivas de maneira prévia à submissão dos códigos feitos individualmente, dando destaque a sua escrita e não apenas ao resultado visto dentro do sistema.
 
 Em última instância, superadas as adversidades em questão, este projeto foi uma rara oportunidade para a edificação de múltiplos aprendizados, verificados na consolidação do domínio em relação às práticas de programação em Python, compreensão geral sobre o funcionamento do Git e dos repositórios GitHub, e na construção de experiências no desenvolvimento de sistemas interativos. Nesse sentido, a criação do 'CroCIn Road' mostrou-se bastante valiosa à equipe.
+
+<p align="center">
+  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/9f340590-552f-42be-bccb-e33496dee589">
+</p>

@@ -4,7 +4,7 @@ from sys import exit
 from car import spawn_carro_azul, spawn_carro_vermelho, spawn_van, spawn_truck, remove_carros_fora_da_tela, atualizar_tempos_spawnagem
 from personagem import Personagem
 from cenario import Cenario
-from menu import Menu, executa_menu
+from menu import Menu
 from settings import largura, altura, tempo_de_spawn_vans, tempo_de_spawn_trucks, tempo_de_spawn_carro_azul, tempo_de_spawn_carro_vermelho, tamanho_personagem, cor_texto, posicao_inicial_personagem
 from coletaveis import Coletavel
 

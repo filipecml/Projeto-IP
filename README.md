@@ -42,7 +42,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 
 Sem dúvidas, [PyGame](https://www.pygame.org/) constituiu a principal biblioteca em Python usada no desenvolvimento desse sistema interativo, uma vez que ela nos permitiu uma implementação relativamente simplificada de diversas _features_ de jogabilidade - registro das teclas pressionadas pelo usuário, criação da tela de display e das caixas de texto, desenho de objetos, verificação de _hitbox_ e processamento de sprites. Além disso, utilizaram-se, ainda, algumas funções associadas às bibliotecas [Sys](https://docs.python.org/3/library/sys.html), [Os](https://docs.python.org/3/library/os.html) e [Random](https://docs.python.org/3/library/random.html), responsáveis pelo controle da execução do programa no sistema operacional, indicação de direcionamento de arquivos (carregamento dos sprites necessários) e geração de inteiros aleatórios (controle de fenômenos e eventos de natureza randômica), respectivamente.
 
-Como ferramenta externa, nos valemos também da plataforma online [Piskel](https://www.piskelapp.com/), através da qual foram criadas as imagens incorporadas como sprites dos coletáveis, personagem, cenário e alguns dos demais objetos utilizados no jogo.
+Como ferramenta externa, nos valemos também da plataforma online [Piskel](https://www.piskelapp.com/), através da qual foram criadas as imagens incorporadas como sprites dos coletáveis, personagem, cenário, menu e alguns dos demais objetos utilizados no jogo.
 
 ## Conceitos didáticos abordados
 

@@ -46,7 +46,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 - _car.py_ - Contém a superclasse relativa ao tipo de objeto _Carro_, a qual estabelece relações de herança com as classes de cada tipo de carro, e instancia seus atributos (tamanho, variação de posição no eixo X, sprite) e comportamentos (desenho na tela, movimentação, verificação de colisão e de limites).
 - _coletaveis.py_ - Armazena também o tipo de objeto _Coletável_, seus atributos (posição, hitbox e sprite) e funções (desenho na tela e verificação de colisão).
 - _imagens_ - Pasta responsável por guardar todos os sprites desenvolvidos e utilizados durante o jogo.
-- _sons_ - Pasta que armazena árquivos de áudio utilizados no decorrer do jogo
+- _sons_ - Pasta que armazena árquivos de áudio utilizados em determinados eventos no decorrer do jogo.
 
 ## Bibliotecas e ferramentas utilizadas
 

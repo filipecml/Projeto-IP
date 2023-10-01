@@ -38,6 +38,10 @@ class Menu:
     
         start, sair = False, False
         
+        pygame.mixer.music.load("sons\menu_music.mp3")
+        pygame.mixer.music.set_volume(0.25)
+        pygame.mixer.music.play()
+        
         # Loop de execução do menu
         while True:
             # Desenhando o menu na tela
@@ -54,6 +58,11 @@ class Menu:
                     start, sair = self.verifica_clique(pygame.mouse.get_pos())
             
             if start:
+                pygame.mixer.music.stop()
+                
+                pygame.mixer.music.load("sons\click_on_menu.wav")
+                pygame.mixer.music.play()
+                
                 break
             elif sair:
                 pygame.quit()

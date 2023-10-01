@@ -32,9 +32,9 @@ def main(tela, menu):
     )
 
     # Criando os coletáveis e listando-os
-    coca_cafe = Coletavel(400, 400, 'coca_cafe.png', tela)
-    marmita = Coletavel(300, 300, 'marmita.png', tela)
-    coxinha = Coletavel(200, 200, 'coxinha.png', tela)
+    coca_cafe = Coletavel('coca_cafe.png', tela)
+    marmita = Coletavel('marmita.png', tela)
+    coxinha = Coletavel('coxinha.png', tela)
 
     lista_coletaveis = [coca_cafe, marmita, coxinha]
 
@@ -118,6 +118,8 @@ def main(tela, menu):
             for carro in tipo_carro:
                 colisao = carro.check_colisao(personagem.hitbox)
                 if colisao:
+                    if pygame.mixer.music.get_busy:
+                        pygame.mixer.music.stop()
                     pygame.mixer.music.load("sons\car_hit.wav")
                     pygame.mixer.music.play()
                     
@@ -183,19 +185,17 @@ def main(tela, menu):
             
             vitoria = True
             
+            for coletavel in lista_coletaveis:
+                lista_coletaveis.remove(coletavel)
+            
             fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
             texto_vitoria = fonte_vitoria.render("You Won!", 1, cor_texto)
 
-            fonte_vitoria = pygame.font.SysFont(
-                "bahnschrift", 20
-            )
-            texto_continua = fonte_vitoria.render(
-                "(Press 'S' to go to menu or 'N' to exit)", 1, cor_texto
-            )
+            fonte_vitoria = pygame.font.SysFont("bahnschrift", 20)
+            texto_continua = fonte_vitoria.render("(Press 'S' to go to menu or 'N' to exit)", 1, cor_texto)
 
             tela.blit(texto_vitoria, (215, 350))
             tela.blit(texto_continua, (145, 395))
-
 
             response = pygame.key.get_pressed()
 
@@ -206,8 +206,9 @@ def main(tela, menu):
                 pygame.quit()
                 exit()
         
-        # Chama a função de processar eventos do personagem
-        personagem.processar_eventos()
+        if not vitoria:
+            # Chama a função de processar eventos do personagem
+            personagem.processar_eventos()
 
         # Atualiza o display com os últimos eventos processados
         pygame.display.update()

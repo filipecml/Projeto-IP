@@ -11,7 +11,7 @@ class Menu:
         self.start_button = pygame.transform.scale(pygame.image.load(os.path.join(self.current_dir, "imagens", "botao_jogar.png")), (199, 72))
         self.exit_button = pygame.transform.scale(pygame.image.load(os.path.join(self.current_dir, "imagens", "botao_sair.png")), (199, 72))
         self.instructions_button = pygame.transform.scale(pygame.image.load(os.path.join(self.current_dir, "imagens", "botao_instrucoes.png")), (199, 72))
-        self.instructions_text = pygame.image.load(os.path.join(self.current_dir, "imagens", "instrucoes.png"))
+        self.instructions_text = pygame.image.load(os.path.join(self.current_dir, "imagens", "Instruções_com_fundo.jpg"))
 
         self.menu_music = os.path.join(self.current_dir, "sons", "menu_music.mp3")
         self.click_sound = os.path.join(self.current_dir, "sons", "click_on_menu.wav")
@@ -49,13 +49,8 @@ class Menu:
         return start, sair, instrucoes
 
     def mostra_instrucoes(self, tela):
-        tela.fill((0, 163, 108))
-        tela.blit(self.instructions_text, (100, 100))
-
-        fonte_instructions_escape = pygame.font.SysFont("bahnschrift", 25)
-        texto_instructions_escape = fonte_instructions_escape.render(">> Press 'ESC' to go back to menu <<", 1, (255, 255, 255))
-        tela.blit(texto_instructions_escape, (100, 675))
-
+        tela.blit(self.instructions_text, (0, 0))
+        
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()

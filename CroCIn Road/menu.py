@@ -38,6 +38,8 @@ class Menu:
     
         start, sair = False, False
         
+        os.chdir(self.current_dir)
+
         pygame.mixer.music.load("sons\menu_music.mp3")
         pygame.mixer.music.set_volume(0.25)
         pygame.mixer.music.play()
@@ -69,3 +71,4 @@ class Menu:
                 exit()
             
             pygame.display.update()
+            

@@ -6,9 +6,9 @@ image_dir = os.path.join(os.path.dirname(__file__), 'imagens')
 
 class Coletavel:
         
-        def __init__(self, x, y, image_filename, tela):
-            self.x = x
-            self.y = y
+        def __init__(self, image_filename, tela):
+            self.x = randint(100, 500)
+            self.y = randint(100, 650)
             self.tela = tela
             original_image = pygame.image.load(os.path.join(image_dir, image_filename))
             self.image = pygame.transform.scale(original_image, (50, 50))  # Redimensionar a imagem
@@ -20,7 +20,7 @@ class Coletavel:
 
         def cria_coletavel(self):
             self.x = randint(100, 500)
-            self.y = randint(100, 700)
+            self.y = randint(100, 650)
 
         def processar_eventos(self):
             self.hitbox.x = self.x

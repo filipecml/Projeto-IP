@@ -5,7 +5,7 @@ Inspirado em um dos maiores clássicos recentes da indústria de jogos _mobile_,
 Simulando a tela de um dispositivo mobile, o jogo é exibido em um display de resolução 600x800 pixels, e tem como objetivo central que o jogador alcance a linha de chegada, ao final do cenário, após ter recolhido pelo menos cinco coletáveis de cada tipo (coca-café, marmita e salgado), enquanto atravessa pistas movimentadas por veículos e evita ao máximo a colisão com eles. O contato com qualquer um dos veículos leva a volta do jogador à posição inicial e à perda de um ponto de vida, de um total de três vidas disponíveis.
 
 <p align="center">
-  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/5a33a75d-ada0-4991-89b6-7f5716d977ce">
+  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/05fc9fe8-4824-4479-aff2-4babe5376b03">
 </p>
 
 ## Instruções de execução e jogabilidade

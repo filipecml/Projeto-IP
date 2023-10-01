@@ -38,7 +38,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
   <img width = 906 src="https://github.com/filipecml/Projeto-IP/assets/136332841/2914cec1-f554-46f2-9519-27800ec21249">
 </p>
 
-- _main.py_ - Consiste no núcleo de toda a estruturação do sistema interativo, onde ocorrem a definição de variáveis de inicialização do programa, o instanciamento do módulo PyGame e de suas funções, bem como o controle do laço de repetição principal - responsável pelo processamento de eventos associados a objetos, cenário e personagem, e a continuidade ou quebra da execução do jogo.
+- _main.py_ - Consiste no núcleo de toda a estruturação do sistema interativo, onde ocorrem a criação dos objetos a partir das classes importadas, o instanciamento do módulo PyGame e de suas funções, bem como o controle do laço de repetição principal - responsável pelo processamento de eventos associados a objetos, cenário e personagem, e a continuidade ou quebra da execução do jogo.
 - _settings.py_ - Armazena constantes relativas às configurações da tela de display do jogo, da frequência de surgimento de carros, do tamanho e da posição inicial do personagem jogável no cenário.
 - _menu.py_ - Contém a classe _Menu_, que guarda as características e propriedades do menu inicial, bem como os comportamentos necessários ao seu funcionamento.
 - _personagem.py_ - Contém a classe _Personagem_, que, por sua vez, engloba todos os atributos (velocidade, posição, vidas disponíveis, coletáveis recolhidos, etc.) e ações (movimento, desenho na tela e tratamento de eventos) do jogador.

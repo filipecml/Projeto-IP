@@ -11,6 +11,9 @@ from coletaveis import Coletavel
 # Inicializa a biblioteca PyGame
 pygame.init()
 
+# Inicializa o mixer da biblioteca PyGame
+pygame.mixer.init()
+
 # Criando o objeto 'tela' para o display de jogo e definindo o nome inserido na janela de execução
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("CroCIn Road")
@@ -18,6 +21,8 @@ pygame.display.set_caption("CroCIn Road")
 menu = Menu()
 
 def main(tela, menu):
+    
+    vitoria = False
     
     menu.executa_menu(tela)
     
@@ -113,11 +118,20 @@ def main(tela, menu):
             for carro in tipo_carro:
                 colisao = carro.check_colisao(personagem.hitbox)
                 if colisao:
+                    pygame.mixer.music.load("sons\car_hit.wav")
+                    pygame.mixer.music.play()
+                    
                     personagem.vidas -= 1  # Decrementa a vida do personagem
                     print(f'Vidas restantes: {personagem.vidas}') # Imprime o número de vidas restantes no terminal
                     
                     # Verifica se o jogador perdeu todas as vidas restantes
                     if personagem.vidas <= 0:
+                        pygame.mixer.music.load("sons\game_over.wav")
+                        pygame.mixer.music.play()
+                        
+                        while pygame.mixer.music.get_busy():
+                            pygame.time.Clock().tick(10)
+                        
                         print('GAME OVER')
                         
                         # Removendo carros desenhados anteriormente
@@ -145,6 +159,9 @@ def main(tela, menu):
         for coletavel in lista_coletaveis:
             colisao = coletavel.check_colisao(personagem.hitbox)
             if colisao:
+                pygame.mixer.music.load("sons\get_coletavel.wav")
+                pygame.mixer.music.play()
+                
                 if lista_coletaveis.index(coletavel) == 0:  # Coca-café
                     personagem.cocas += 1
                 elif lista_coletaveis.index(coletavel) == 1:  # Marmita
@@ -160,6 +177,12 @@ def main(tela, menu):
             and personagem.coxinhas >= 5
             and personagem.y <= 30 # Linha de chegada
         ):
+            if not vitoria:
+                pygame.mixer.music.load("sons\win.wav")
+                pygame.mixer.music.play()
+            
+            vitoria = True
+            
             fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
             texto_vitoria = fonte_vitoria.render("You Won!", 1, cor_texto)
 

@@ -35,7 +35,7 @@ Com o jogo em execução, é possível controlar a movimentação do personagem 
 ## Organização do código
 
 <p align="center">
-  <img width = 1360 height = 860 src="https://github.com/filipecml/Projeto-IP/assets/136332841/2914cec1-f554-46f2-9519-27800ec21249">
+  <img src="https://github.com/filipecml/Projeto-IP/assets/136332841/2914cec1-f554-46f2-9519-27800ec21249">
 </p>
 
 - _main.py_ - Consiste no núcleo de toda a estruturação do sistema interativo, onde ocorrem a definição de variáveis de inicialização do programa, o instanciamento do módulo PyGame e de suas funções, bem como o controle do laço de repetição principal - responsável pelo processamento de eventos associados a objetos, cenário e personagem, e a continuidade ou quebra da execução do jogo.

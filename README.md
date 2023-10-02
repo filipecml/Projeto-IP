@@ -77,5 +77,5 @@ Quanto aos erros, foram evidentes, principalmente no transcorrer de determinadas
 Em última instância, superadas as adversidades em questão, este projeto foi uma rara oportunidade para a edificação de múltiplos aprendizados, verificados na consolidação do domínio em relação às práticas de programação em Python, compreensão geral sobre o funcionamento do Git e dos repositórios GitHub, e na construção de experiências no desenvolvimento de sistemas interativos. Nesse sentido, a criação do 'CroCIn Road' mostrou-se bastante valiosa à equipe.
 
 <p align="center">
-  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/9f340590-552f-42be-bccb-e33496dee589">
+  <img width = 450 height = 624 src="https://github.com/filipecml/Projeto-IP/assets/136332841/a5f031f2-893f-419b-9e9f-0963ec99ef01">
 </p>

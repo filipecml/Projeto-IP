@@ -174,10 +174,10 @@ def main(tela, menu):
 
         #Verifica a vitoria 
         if (
-            personagem.cocas >= 5
-            and personagem.marmitas >= 5
-            and personagem.coxinhas >= 5
-            and personagem.y <= 30 # Linha de chegada
+            #personagem.cocas >= 5
+            #and personagem.marmitas >= 5
+            #and personagem.coxinhas >= 5
+            personagem.y <= 30 # Linha de chegada
         ):
             if not vitoria:
                 pygame.mixer.music.load("sons\win.wav")
@@ -185,17 +185,24 @@ def main(tela, menu):
             
             vitoria = True
             
+            # Faz com que os veículos deixem de spawnar após a vitória, o que evita glitchs de movimentação dos veículos
+            ultima_spawnagem_azul = atualizar_tempos_spawnagem()
+            ultima_spawnagem_vermelho = atualizar_tempos_spawnagem()
+            ultima_spawnagem_vans = atualizar_tempos_spawnagem()
+            ultima_spawnagem_trucks = atualizar_tempos_spawnagem()
+            
+            # Remove os coletáveis do ambiente
             for coletavel in lista_coletaveis:
                 lista_coletaveis.remove(coletavel)
             
             fonte_vitoria = pygame.font.SysFont("bahnschrift", 45)
-            texto_vitoria = fonte_vitoria.render("You Won!", 1, cor_texto)
+            texto_vitoria = fonte_vitoria.render("Vitória!", 1, cor_texto)
 
             fonte_vitoria = pygame.font.SysFont("bahnschrift", 20)
-            texto_continua = fonte_vitoria.render("(Press 'S' to go to menu or 'N' to exit)", 1, cor_texto)
+            texto_continua = fonte_vitoria.render("(Pressione 'S' para voltar ao menu ou 'N' para sair do jogo)", 1, cor_texto)
 
-            tela.blit(texto_vitoria, (215, 350))
-            tela.blit(texto_continua, (145, 395))
+            tela.blit(texto_vitoria, (230, 350))
+            tela.blit(texto_continua, (40, 395))
 
             response = pygame.key.get_pressed()
 
